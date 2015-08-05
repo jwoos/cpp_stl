@@ -11,12 +11,9 @@ def answer(names):
     for a_list in list_list:
         sum_list.append(sum(a_list))
     print sum_list
-#    for x in sum_list:
- #       if sum_list.count(x) >= 2:
-
 
     dictionary = dict(sum_list, names)
-    ordered_list = sorted(dictionary.items(), reverse = True)
+    ordered_list = sorted(dictionary.items(), reverse=True)
     print dictionary
     print ordered_list
     output = []
