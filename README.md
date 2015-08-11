@@ -9,3 +9,4 @@
     2. [Zombit Antidote](https://github.com/jwoos/foobar/tree/master/zombitantidote)
 3. Level 3
     1. [When It Rains It Pours](https://github.com/jwoos/foobar/tree/master/whenitrainsitpours)
+    2. [Hash It Out](https://github.com/jwoos/foobar/tree/master/hashitout)
