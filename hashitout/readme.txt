@@ -3,7 +3,9 @@ Hash it out
 
 Something horrible must have gone wrong in that last mission. As you wake in a holding cell, you realize that youre in the clutches of Professor Booleans numerous but relatively incompetent minions! Time to plan another escape.
 
-Lucky for you nobody is around (do these security minions just sleep all the time?), so you have a chance to examine your cell. Looking around, you see no signs of surveillance (ha, they must underestimate you already) and the only thing keeping you contained is an electronic door lock. Should be easy enough.<br><br>You and Beta Rabbit worked together to exfiltrate some of Professor Booleans security information in anticipation of a moment just like this one. Time to put it to the test.
+Lucky for you nobody is around (do these security minions just sleep all the time?), so you have a chance to examine your cell. Looking around, you see no signs of surveillance (ha, they must underestimate you already) and the only thing keeping you contained is an electronic door lock. Should be easy enough.
+
+You and Beta Rabbit worked together to exfiltrate some of Professor Booleans security information in anticipation of a moment just like this one. Time to put it to the test.
 
 If memory serves, this locking mechanism relies on a horribly bad cryptographic hash, and you should be able to break it with some rudimentary calculations.
 
@@ -16,7 +18,8 @@ digest [i] = ( (129 * message[i]) XOR message[i-1]) % 256
 For the first element, the value of message[-1] is 0.
 
 For example, if message[0] - 1 and message[1] = 129, then:
-For digest[0]:<br>129*message[0] = 129
+For digest[0]:
+129*message[0] = 129
 129 XOR message[-1] = 129
 129 % 256 = 129
 Thus digest[0] = 129.
