@@ -17,7 +17,7 @@ digest [i] = ( (129 * message[i]) XOR message[i-1]) % 256
 
 For the first element, the value of message[-1] is 0.
 
-For example, if message[0] - 1 and message[1] = 129, then:
+For example, if message[0] = 1 and message[1] = 129, then:
 For digest[0]:
 129*message[0] = 129
 129 XOR message[-1] = 129
