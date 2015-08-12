@@ -1,0 +1,22 @@
+8 bits = 1 byte
+
+working with 16 bytes of data
+each number will be a byte and so have a value from 0 to 255
+
+digest [i] = ( (129 * message[i]) XOR message[i-1]) % 256
+
+129 * message[i]
+----------------
+this shifts the number by 7 bits, starting from the last bit
+
+ex/ 129 * 4 = 516
+    4 =   00000100
+  129 =   10000001
+  516 = 1000000100
+The '100' moved over 7 places(for overlaps, use the new bit)
+
+message[i - 1]
+--------------
+
+% 256
+----
