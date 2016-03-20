@@ -17,7 +17,7 @@
     "url": "https://github.com/jwoos/freecodecamp_timestamp/issues"
   },
   "homepage": "https://github.com/jwoos/freecodecamp_timestamp#readme",
-  "devDependencies": {
+  "dependencies": {
     "ejs": "^2.4.1",
     "express": "^4.13.4"
   }
