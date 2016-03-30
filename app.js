@@ -2,6 +2,8 @@
 
 const express = require('express');
 const app = express();
+const newUrl = require('./modules/new.js');
+const redirect = require('./modules/redirect.js');
 
 app.engine('html', require('ejs').renderFile());
 
@@ -9,6 +11,17 @@ app.use(express.static('static'));
 
 app.get('/', function(req, res, next) {
     res.render('index.html');
+});
+
+app.get('/new/:url', function(req, res, next) {
+    let url = req.params.url;
+    newUrl(url);
+});
+
+app.get('/:number', function(req, res, next) {
+    let number = req.params.number;
+    
+    res.redirect(redirect(number));
 });
 
 // handle 404
