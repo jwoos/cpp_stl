@@ -15,13 +15,17 @@ app.get('/', function(req, res, next) {
 
 app.get('/new/:url', function(req, res, next) {
     let url = req.params.url;
-    newUrl(url);
+    let data = newUrl(url);
+    res.send(data);
+    res.end();
 });
 
 app.get('/:number', function(req, res, next) {
     let number = req.params.number;
     
-    res.redirect(redirect(number));
+    let redirectUrl = redirect(number);
+    res.redirect(redirectUrl);
+    res.end();
 });
 
 // handle 404
