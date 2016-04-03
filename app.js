@@ -5,7 +5,7 @@ const app = express();
 const newUrl = require('./modules/new.js');
 const redirect = require('./modules/redirect.js');
 
-app.engine('html', require('ejs').renderFile());
+app.engine('html', require('ejs').renderFile);
 
 app.use(express.static('static'));
 
