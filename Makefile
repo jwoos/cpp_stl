@@ -1,6 +1,6 @@
 COMPILER = g++
 WARNING = -Wall
-STANDARD = -std=c++14
+STANDARD = -std=c++1y
 DEBUG = -g
 OPTIMIZATION = -O0
 DIRECTORY = -I.
