@@ -1,15 +1,6 @@
 import random
 
-solved = False
-
-guesses = [0]
-
-lower_bound = 1
-upper_bound = 100
-
-tries = 0
-
-def number_guess(lower_bound, upper_bound):
+def number_guess(lower_bound, upper_bound, guesses):
     guess = 0
     while guess in guesses:
         guess = random.randint(lower_bound, upper_bound)
@@ -29,15 +20,28 @@ def number_guess(lower_bound, upper_bound):
         elif hint =='l':
             return (None, guess - 1)
 
-while not solved:
-    tries += 1
-    return_value = number_guess(lower_bound, upper_bound)
+def main():
+    solved = False
+
+    guesses = [0]
     
-    if return_value is None:
-        print('It took me %s tries' % tries)
-        solved = True
-    else:
-        if return_value[0] is None:
-            upper_bound = return_value[1]
-        elif return_value[1] is None:
-            lower_bound = return_value[0]
+    lower_bound = 1
+    upper_bound = 100
+    
+    tries = 0
+    
+    while not solved:
+        tries += 1
+        return_value = number_guess(lower_bound, upper_bound, guesses)
+        
+        if return_value is None:
+            print('It took me %s tries' % tries)
+            solved = True
+        else:
+            if return_value[0] is None:
+                upper_bound = return_value[1]
+            elif return_value[1] is None:
+                lower_bound = return_value[0]
+            
+if __name__ == '__main__':
+    main()
