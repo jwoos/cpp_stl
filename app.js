@@ -2,8 +2,9 @@
 
 const express = require('express');
 const app = express();
-const newUrl = require('./modules/new.js');
-const redirect = require('./modules/redirect.js');
+
+const pg = require('pg');
+const pgString = 'postgres://ubuntu:123456789@localhost/links';
 
 app.engine('html', require('ejs').renderFile);
 
@@ -15,17 +16,65 @@ app.get('/', function(req, res, next) {
 
 app.get('/new/:url', function(req, res, next) {
     let url = req.params.url;
-    let data = newUrl(url);
-    res.send(data);
-    res.end();
+    let toReturn = {};
+
+    let gettingQuery;
+    
+    let validPattern = /^(https|http)?(:\/\/)?(www\.)?\w+\.(\w+)(\.\w+)?(\/\w+)*/;
+    if (!validPattern.test(url)) {
+        toReturn.error = true;
+        res.send(toReturn);
+    }
+    
+    pg.connect(pgString, function(err, client, done) {
+        if (err) {
+            console.log('Error fetching client from pool', err);
+            done();
+        }
+        
+        client.query(`INSERT INTO links(url) values('${url}')`, function(err, result) {
+            if (err) {
+                toReturn.error = err;
+            }
+        });
+      
+        gettingQuery = client.query(`SELECT * FROM links WHERE url='${url}'`, function(err, result) {
+            if (err) {
+                toReturn.error = err;
+                res.send(toReturn);
+            }
+            toReturn.original_url = result.rows[result.rows.length - 1].url;
+            toReturn.short_url = 'http://fcc-jwoos.c9users.io/' + result.rows[result.rows.length - 1].id;
+        });
+        
+        gettingQuery.on('end', function() {
+            done();
+            return res.send(toReturn); 
+        });
+    });
 });
 
 app.get('/:number', function(req, res, next) {
     let number = req.params.number;
     
-    let redirectUrl = redirect(number);
-    res.redirect(redirectUrl);
-    res.end();
+    pg.connect(pgString, function(err, client, done) {
+        if (err) {
+            return console.log('Error fetching client from pool', err);
+        }
+        
+        client.query(`SELECT * FROM links WHERE id=${number}`, function(err, results) {
+            done();
+            if (err) {
+                console.log(err);
+            } else {
+                if (results.rows.length) {
+                    res.redirect('//' + results.rows[0].url);
+                } else {
+                    next();
+                }
+            }
+        });
+    });
 });
 
 // handle 404
@@ -38,7 +87,6 @@ app.use(function(err, req, res, next) {
 	if (req.xhr) {
 		res.status(500).send({ error: 'Error' });
 	} else {
-		res.send('Error');
 		res.send(err);
 	}
 });
