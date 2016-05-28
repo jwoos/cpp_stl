@@ -4,7 +4,10 @@ const express = require('express');
 const app = express();
 
 const pg = require('pg');
-const pgString = 'postgres://ubuntu:123456789@localhost/links';
+const pgString = process.env.DATABASE_URL || 'postgres://ubuntu:123456789@localhost/links';
+if (process.env.DEV_ENV === 'heroku') {
+    pg.defaults.ssl = true;
+}
 
 app.engine('html', require('ejs').renderFile);
 
@@ -32,30 +35,38 @@ app.get('/new/:url', function(req, res, next) {
             done();
         }
         
-        client.query(`INSERT INTO links(url) values('${url}')`, function(err, result) {
-            if (err) {
-                toReturn.error = err;
-            }
-        });
-      
-        gettingQuery = client.query(`SELECT * FROM links WHERE url='${url}'`, function(err, result) {
-            if (err) {
-                toReturn.error = err;
-                res.send(toReturn);
-            }
-            toReturn.original_url = result.rows[result.rows.length - 1].url;
-            toReturn.short_url = 'http://fcc-jwoos.c9users.io/' + result.rows[result.rows.length - 1].id;
-        });
-        
-        gettingQuery.on('end', function() {
+        let insertionQuery = client.query(`INSERT INTO links(url) values('${url}')`);
+        insertionQuery.on('error', function(err) {
             done();
-            return res.send(toReturn); 
+            res.send(err);
+        });
+    
+        insertionQuery.on('end', function() {
+            console.log('inserted');
+            gettingQuery = client.query(`SELECT * FROM links WHERE url='${url}'`, function(err, result) {
+                if (err) {
+                    toReturn.error = err;
+                    res.send(toReturn);
+                }
+                console.log(result);
+                toReturn.original_url = result.rows[result.rows.length - 1].url;
+                toReturn.short_url = 'http://fcc-jwoos.c9users.io/' + result.rows[result.rows.length - 1].id;
+            });
+            
+            gettingQuery.on('end', function() {
+                done();
+                return res.send(toReturn); 
+            });
         });
     });
 });
 
 app.get('/:number', function(req, res, next) {
     let number = req.params.number;
+    
+    if (!number.match(/\d+/)) {
+        next();
+    }
     
     pg.connect(pgString, function(err, client, done) {
         if (err) {
