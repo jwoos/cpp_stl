@@ -33,6 +33,7 @@ app.get('/new/:url', function(req, res, next) {
         if (err) {
             console.log('Error fetching client from pool', err);
             done();
+            res.send(err);
         }
         
         let insertionQuery = client.query(`INSERT INTO links(url) values('${url}')`);

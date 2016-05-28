@@ -1,7 +1,10 @@
 'use strict';
 
 const pg = require('pg');
-const pgString = 'postgres://ubuntu:123456789@localhost/links';
+const pgString = process.env.DATABASE_URL || 'postgres://ubuntu:123456789@localhost/links';
+if (process.env.DEV_ENV === 'heroku') {
+    pg.defaults.ssl = true;
+}
 
 pg.connect(pgString, function(err, client, done) {
     if (err) {
