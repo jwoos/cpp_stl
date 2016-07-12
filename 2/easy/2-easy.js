@@ -5,10 +5,10 @@ const readlineSync = require('readline-sync');
 let conversions = {
   f: {
     c: (currentTemp) => {
-      return (currentTemp - 32) * 5 / 9
+      return (currentTemp - 32) * 5 / 9;
     },
     k: (currentTemp) => {
-      return conversions['f']['c](current_temp) + 273.15
+      return conversions['f']['c](current_temp) + 273.15;
     }
   },
   c: {
