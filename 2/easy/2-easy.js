@@ -8,7 +8,7 @@ let conversions = {
       return (currentTemp - 32) * 5 / 9;
     },
     k: (currentTemp) => {
-      return conversions['f']['c](current_temp) + 273.15;
+      return conversions['f']['c'](current_temp) + 273.15;
     }
   },
   c: {
