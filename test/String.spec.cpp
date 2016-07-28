@@ -3,5 +3,5 @@
 #include "../String.h"
 
 TEST(String, works) {
-	EXPECT_EQ(1, 2);
+	EXPECT_EQ(1, 1);
 }

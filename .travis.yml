@@ -1,0 +1,11 @@
+language: cpp
+compiler: gcc
+env:
+    - CXX=g++-6
+script: make test-build && make test-run
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-6
