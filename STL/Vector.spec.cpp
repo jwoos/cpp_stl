@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
-#include "../String.h"
+#include "Vector.h"
 
-TEST(String, works) {
+TEST(Vector, works) {
 	EXPECT_EQ(1, 1);
 }
