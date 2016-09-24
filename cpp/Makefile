@@ -68,19 +68,19 @@ gtest_main.a: gtest-all.o gtest_main.o
 	${AR} ${ARFLAGS} $@ $^
 
 # Tests
-Vector.o: ${USER_DIR}/Vector.cpp ${USER_DIR}/Vector.h ${GTEST_HEADERS}
+Vector.o: ${USER_DIR}/Vector.cpp ${USER_DIR}/Vector.hpp ${GTEST_HEADERS}
 	${CXX} ${CPPFLAGS} ${CXXFLAGS} -c ${USER_DIR}/Vector.cpp
 
-Vector.spec.o: ${TEST_DIR}/Vector.spec.cpp ${USER_DIR}/Vector.h ${GTEST_HEADERS}
+Vector.spec.o: ${TEST_DIR}/Vector.spec.cpp ${USER_DIR}/Vector.hpp ${GTEST_HEADERS}
 	${CXX} ${CPPFLAGS} ${CXXFLAGS} -c ${TEST_DIR}/Vector.spec.cpp
 
 Vector-spec: Vector.o Vector.spec.o gtest_main.a
 	${CXX} ${CPPFLAGS} ${CXXFLAGS} -lpthread $^ -o $@
 
-List.o: ${USER_DIR}/List.cpp ${USER_DIR}/List.h ${GTEST_HEADERS}
+List.o: ${USER_DIR}/List.cpp ${USER_DIR}/List.hpp ${GTEST_HEADERS}
 	${CXX} ${CPPFLAGS} ${CXXFLAGS} -c ${USER_DIR}/List.cpp
 
-List.spec.o: ${TEST_DIR}/List.spec.cpp ${USER_DIR}/List.h ${GTEST_HEADERS}
+List.spec.o: ${TEST_DIR}/List.spec.cpp ${USER_DIR}/List.hpp ${GTEST_HEADERS}
 	${CXX} ${CPPFLAGS} ${CXXFLAGS} -c ${TEST_DIR}/List.spec.cpp
 
 List-spec: List.o List.spec.o gtest_main.a
