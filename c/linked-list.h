@@ -18,10 +18,13 @@ typedef struct List {
 	int size;
 } List;
 
-// done
 List* initializeList(Node*);
 
+void deconstructList(List*);
+
 Node* initializeNode(int, Node*);
+
+void deconstructNode(Node*);
 
 void printList(List*);
 

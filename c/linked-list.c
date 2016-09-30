@@ -19,6 +19,21 @@ List* initializeList(Node* node) {
 	return list;
 }
 
+void deconstructList(List* list) {
+	Node* current = list -> head;
+
+	while (current != list -> tail) {
+		Node* next = current -> next;
+
+		free(current);
+
+		current = next;
+	}
+
+	free(list);
+	list = NULL;
+}
+
 Node* initializeNode(int data, Node* next) {
 	Node* node = malloc(sizeof(Node));
 
@@ -26,6 +41,10 @@ Node* initializeNode(int data, Node* next) {
 	node -> next = next ? next : NULL;
 
 	return node;
+}
+
+void deconstuctNode(Node* node) {
+	free(node);
 }
 
 void printList(List* list) {

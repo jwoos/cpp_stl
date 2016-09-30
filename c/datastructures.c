@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "linked-list.h"
+#include "vector.h"
 
 void checkList() {
 	Node* head = initializeNode(10, NULL);
@@ -37,8 +38,37 @@ void checkList() {
 	free(list);
 }
 
+void checkVector() {
+	Vector* vector = initializeVector();
+	for (int i = 0; i < 100; i++) {
+		pushVector(vector, i);
+
+		printf("size: %d, capacity: %d \n", vector -> size, vector -> capacity);
+	}
+	printVector(vector);
+
+	printf("popped data:");
+	for (int i = 0; i < 50; i++) {
+		printf(" %d,", popVector(vector));
+	}
+	printf("\n");
+	printf("size: %d, capacity: %d \n", vector -> size, vector -> capacity);
+	printVector(vector);
+
+	insertVector(vector, 10, 100);
+	printVector(vector);
+	deleteVector(vector, 10);
+	printVector(vector);
+	clearVector(vector);
+	printf("size: %d, capacity: %d \n", vector -> size, vector -> capacity);
+
+	free(vector -> arr);
+	free(vector);
+}
+
 int main() {
 	checkList();
+	checkVector();
 
 	return 0;
 }

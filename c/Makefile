@@ -1,6 +1,6 @@
 WARNING = -Wall
 
-ALL = linked-list.o
+ALL = linked-list.o vector.o
 
 default: clean datastructures
 
@@ -13,6 +13,9 @@ datastructures: ${ALL}
 
 linked-list.o:
 	$(CC) ${WARNING} -c linked-list.c
+
+vector.o:
+	$(CC) ${WARNING} -c vector.c
 
 clean:
 	rm ${ALL} datastructures
