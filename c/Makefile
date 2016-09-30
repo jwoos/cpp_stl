@@ -1,4 +1,6 @@
 WARNING = -Wall
+DEBUG = -g
+OPTIMIZE = -O0
 
 ALL = linked-list.o vector.o
 
@@ -8,14 +10,14 @@ debug: default
 	valgrind --leak-check=full -v ./datastructures
 
 datastructures: ${ALL}
-	$(CC) ${WARNING} $@.c $^ -o $@
+	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} $@.c $^ -o $@
 	./$@
 
 linked-list.o:
-	$(CC) ${WARNING} -c linked-list.c
+	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c linked-list.c
 
 vector.o:
-	$(CC) ${WARNING} -c vector.c
+	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c vector.c
 
 clean:
 	rm ${ALL} datastructures

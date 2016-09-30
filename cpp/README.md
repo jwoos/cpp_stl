@@ -1,4 +1,4 @@
-# cpp_stl
+# C++
 Structures in STL reimplemented as practice
 
 ### Sequence Containers
