@@ -3,7 +3,7 @@ DEBUG = -g
 VERSION = -std=c++14
 OPTIMIZE = -O0
 
-ALL = List.o Vector.o
+ALL = List.o Vector.o utils.o
 
 default: clean main
 
@@ -19,6 +19,12 @@ List.o:
 
 Vector.o:
 	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} -c Vector.cpp -o $@
+
+utils.o:
+	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} -c utils.cpp -o $@
+
+sort.o:
+	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBIG} -c sort/*.cpp -o $@
 
 clean:
 	rm ${ALL} main
