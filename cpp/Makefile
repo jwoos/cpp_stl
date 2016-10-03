@@ -21,10 +21,7 @@ Vector.o:
 	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} -c Vector.cpp -o $@
 
 utils.o:
-	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} -c utils.cpp -o $@
-
-sort.o:
-	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBIG} -c sort/*.cpp -o $@
+	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} -c utils/Timer.cpp -o $@
 
 clean:
 	rm ${ALL} main
