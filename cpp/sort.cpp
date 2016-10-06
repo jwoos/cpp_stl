@@ -9,7 +9,7 @@ void insertionSort(std::vector<T>& v) {
 		T temp = v[i];
 		int j = i;
 
-		for (; j > 0 && v[j] < v[j - 1]; j--) {
+		for (; j > 0 && temp < v[j - 1]; j--) {
 			v[j] = v[j - 1];
 		}
 
