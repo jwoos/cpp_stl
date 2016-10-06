@@ -1,4 +1,6 @@
 #include <ctime>
+#include <iostream>
+#include <string>
 
 class Timer {
 	public:
@@ -10,4 +12,4 @@ class Timer {
 
 	private:
 		double start;
-}
+};

@@ -1,3 +1,5 @@
+#include "utils.hpp"
+
 Timer::Timer() {
 	start = clock();
 }
