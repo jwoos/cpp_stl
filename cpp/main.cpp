@@ -6,7 +6,10 @@
 #include "sort.hpp"
 #include "utils.hpp"
 
+#include "List.hpp"
 #include "Vector.hpp"
+#include "Queue.hpp"
+#include "Stack.hpp"
 
 using namespace std;
 
