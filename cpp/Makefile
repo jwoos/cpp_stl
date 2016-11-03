@@ -11,7 +11,7 @@ debug: default
 	valgrind --leak-check=full -v ./main
 
 main: ${ALL}
-	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} $@.cpp $^ -o $@
+	$(CXX) ${VERSION} ${WARNING} ${OPTIMIZE} ${DEBUG} $@.cpp sort.cpp $^ -o $@
 	./$@
 
 List.o:
