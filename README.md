@@ -1,13 +1,12 @@
 # [dailyprogrammer](https://www.reddit.com/r/dailyprogrammer)
 
-✓ = Done  
-Blank means not yet done  
+- E = easy
+- M = medium
+- D = difficult
 
-| Challenge Number | Difficulty | Python | JavaScript | C++ | Shell | Go | Rust |
-|------------------|------------|--------|------------|-----|-------|----|------|
-| 1                | Easy       | ✓      | ✓          | ✓   |       |    |      |
-| 1                | Diffcult   | ✓      | ✓          | ✓   |       |    |      |
-| 2                | Easy       | ✓      | ✓          | ✓   |       |    |      |
-| 3                | Easy       | ✓      | ✓          |     |       |    |      |
-| 3                | Diffcult   | ✓      |            |     |       |    |      |
+| Challenge Number | Python | JavaScript | C++  | C |
+|------------------|--------|------------|------|---|
+| 1                | E, D   | E, D       | E, D |   |
+| 2                | E      | E          | E    |   |
+| 3                | E, D   | E          |      |   |
 

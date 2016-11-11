@@ -11,3 +11,5 @@ LINK =
 default:
 	$(COMPILER) ${WARNING} ${STANDARD} ${DEBUG} ${DIRECTORY} ${FILE} ${LINK} -o ${BASE}.out
 	./${BASE}.out
+
+# TODO: separate C and C++ targets
