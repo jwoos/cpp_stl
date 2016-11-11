@@ -1,7 +1,7 @@
 # [dailyprogrammer](https://www.reddit.com/r/dailyprogrammer)
 
 - E = easy
-- M = medium
+- I = intermediate
 - D = difficult
 
 | Challenge Number | Python | JavaScript | C++  | C |
