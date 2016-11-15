@@ -2,7 +2,7 @@ WARNING = -Wall
 DEBUG = -g
 OPTIMIZE = -O0
 
-ALL = linked-list.o vector.o
+ALL = linked-list.o vector.o bst.o
 
 default: clean datastructures
 
@@ -18,6 +18,9 @@ linked-list.o:
 
 vector.o:
 	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c vector.c
+
+bst.o:
+	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c bst.c
 
 clean:
 	rm ${ALL} datastructures

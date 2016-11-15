@@ -9,7 +9,7 @@ static void increaseCapacity(Vector* vector) {
 	vector -> arr = realloc(vector -> arr, sizeof(int) * (vector -> capacity));
 }
 
-Vector* initializeVector() {
+Vector* vectorInitialize() {
 	Vector* vector = malloc(sizeof(Vector));
 
 	vector -> size = 0;
@@ -19,14 +19,14 @@ Vector* initializeVector() {
 	return vector;
 }
 
-void deconstructVector(Vector* vector) {
+void vectorDeconstruct(Vector* vector) {
 	free(vector -> arr);
 	free(vector);
 
 	vector = NULL;
 }
 
-void printVector(const Vector* vector) {
+void vectorPrint(const Vector* vector) {
 	for (int i = 0; i < vector -> size; i++) {
 		printf("%d -> ", vector -> arr[i]);
 	}
@@ -34,7 +34,7 @@ void printVector(const Vector* vector) {
 	printf("\n");
 }
 
-void pushVector(Vector* vector, int data) {
+void vectorPush(Vector* vector, int data) {
 	if (vector -> size == vector -> capacity) {
 		increaseCapacity(vector);
 	}
@@ -43,7 +43,7 @@ void pushVector(Vector* vector, int data) {
 	vector -> size++;
 }
 
-int popVector(Vector* vector) {
+int vectorPop(Vector* vector) {
 	vector -> size--;
 
 	int data = vector -> arr[vector -> size];
@@ -52,15 +52,15 @@ int popVector(Vector* vector) {
 	return data;
 }
 
-int getVector(const Vector* vector, int index) {
+int vectorGet(const Vector* vector, int index) {
 	return vector -> arr[index];
 }
 
-void setVector(Vector* vector, int index, int data) {
+void vectorSet(Vector* vector, int index, int data) {
 	vector -> arr[index] = data;
 }
 
-void insertVector(Vector* vector, int index, int data) {
+void vectorInsert(Vector* vector, int index, int data) {
 	if (vector -> size == vector -> capacity) {
 		increaseCapacity(vector);
 	}
@@ -68,21 +68,21 @@ void insertVector(Vector* vector, int index, int data) {
 	vector -> size++;
 
 	for (int i = vector -> size - 1; i > index; i--) {
-		vector -> arr[i] = getVector(vector, i - 1);
+		vector -> arr[i] = vectorGet(vector, i - 1);
 	}
 
-	setVector(vector, index, data);
+	vectorSet(vector, index, data);
 }
 
-void deleteVector(Vector* vector, int index) {
+void vectorDelete(Vector* vector, int index) {
 	for (int i = index; i < vector -> size - 1; i++) {
-		vector -> arr[i] = getVector(vector, i + 1);
+		vector -> arr[i] = vectorGet(vector, i + 1);
 	}
 
 	vector -> size--;
 }
 
-void clearVector(Vector* vector) {
+void vectorClear(Vector* vector) {
 	free(vector -> arr);
 	vector -> arr = malloc(sizeof(int));
 	vector -> size = 0;

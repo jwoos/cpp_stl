@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 /*
  * dynamic array
  */
@@ -8,22 +11,24 @@ typedef struct Vector {
 	int* arr;
 } Vector;
 
-Vector* initializeVector();
+Vector* vectorInitialize();
 
-void deconstructVector(Vector*);
+void vectorDeconstruct(Vector*);
 
-void printVector(const Vector*);
+void vectorPrint(const Vector*);
 
-void pushVector(Vector*, int);
+void vectorPush(Vector*, int);
 
-int popVector(Vector*);
+int vectorPop(Vector*);
 
-int getVector(const Vector*, int);
+int vectorGet(const Vector*, int);
 
-void setVector(Vector*, int, int);
+void vectorSet(Vector*, int, int);
 
-void insertVector(Vector*, int, int);
+void vectorInsert(Vector*, int, int);
 
-void deleteVector(Vector*, int);
+void vectorDelete(Vector*, int);
 
-void clearVector(Vector*);
+void vectorClear(Vector*);
+
+#endif

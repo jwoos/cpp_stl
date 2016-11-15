@@ -1,43 +1,48 @@
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+
 /*
- * the Node is the actual list, I opted to wrap it in another struct
- * to avoid having to put the head/tail on each Node as that would be
+ * the ListNode is the actual list, I opted to wrap it in another struct
+ * to avoid having to put the head/tail on each ListNode as that would be
  * highly inefficient. Also this way, other properties of the list as
  * a WHOLE can be recorded e.g. size
  */
 
 // this should still be available
-typedef struct Node {
+typedef struct ListNode {
 	int data;
-	struct Node* next;
-} Node;
+	struct ListNode* next;
+} ListNode;
 
-// Node wrapper
+// ListNode wrapper
 typedef struct List {
-	Node* head;
-	Node* tail;
+	ListNode* head;
+	ListNode* tail;
 	int size;
 } List;
 
-List* initializeList(Node*);
+List* listInitialize(ListNode*);
 
-void deconstructList(List*);
+void listDeconstruct(List*);
 
-Node* initializeNode(int, Node*);
+ListNode* listNodeInitialize(int, ListNode*);
 
-void deconstructNode(Node*);
+void listNodeDeconstruct(ListNode*);
 
-void printList(List*);
+void listPrint(List*);
 
-void pushList(List*, int);
+void listPush(List*, int);
 
-Node* popList(List*);
+ListNode* listPop(List*);
 
-Node* getElementList(List*, int);
+ListNode* listGetElement(List*, int);
 
-void setElementList(List*, int, int);
+void listSetElement(List*, int, int);
 
-void insertList(List*, int, int);
+void listInsert(List*, int, int);
 
-void deleteList(List*, int);
+void listDelete(List*, int);
 
-void clearList(List*);
+void listClear(List*);
+
+#endif

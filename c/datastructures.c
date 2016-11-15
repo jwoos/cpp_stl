@@ -1,65 +1,66 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "bst.h"
 #include "linked-list.h"
 #include "vector.h"
 
-void checkList() {
-	Node* head = initializeNode(10, NULL);
-	List* list = initializeList(head);
+void listCheck() {
+	ListNode* head = listNodeInitialize(10, NULL);
+	List* list = listInitialize(head);
 
 	for (int i = 2; i < 10; i++) {
-		pushList(list, i * 10);
+		listPush(list, i * 10);
 	}
 
-	printList(list);
+	listPrint(list);
 
-	Node* popped = popList(list);
+	ListNode* popped = listPop(list);
 
-	printList(list);
+	listPrint(list);
 	printf("popped address: %p data: %d\n", (void*) popped, popped -> data);
 
-	printf("index 2: %d\n", getElementList(list, 2) -> data);
-	printf("index 10: %p\n", (void*)getElementList(list, 10));
+	printf("index 2: %d\n", listGetElement(list, 2) -> data);
+	printf("index 10: %p\n", (void*)listGetElement(list, 10));
 
-	setElementList(list, 2, 1000);
-	printf("index 2: %d\n", getElementList(list, 2) -> data);
+	listSetElement(list, 2, 1000);
+	printf("index 2: %d\n", listGetElement(list, 2) -> data);
 
-	insertList(list, 5, 2000);
-	printList(list);
-	deleteList(list, 5);
-	printList(list);
+	listInsert(list, 5, 2000);
+	listPrint(list);
+	listDelete(list, 5);
+	listPrint(list);
 
-	clearList(list);
-	printList(list);
+	listClear(list);
+	listPrint(list);
 	printf("size: %d, head: %p tail: %p\n", list -> size, (void*)list -> head, (void*)list -> tail);
 
 	free(popped);
 	free(list);
 }
 
-void checkVector() {
-	Vector* vector = initializeVector();
+void vectorCheck() {
+	Vector* vector = vectorInitialize();
 	for (int i = 0; i < 100; i++) {
-		pushVector(vector, i);
+		vectorPush(vector, i);
 
 		printf("size: %d, capacity: %d \n", vector -> size, vector -> capacity);
 	}
-	printVector(vector);
+	vectorPrint(vector);
 
 	printf("popped data:");
 	for (int i = 0; i < 50; i++) {
-		printf(" %d,", popVector(vector));
+		printf(" %d,", vectorPop(vector));
 	}
 	printf("\n");
 	printf("size: %d, capacity: %d \n", vector -> size, vector -> capacity);
-	printVector(vector);
+	vectorPrint(vector);
 
-	insertVector(vector, 10, 100);
-	printVector(vector);
-	deleteVector(vector, 10);
-	printVector(vector);
-	clearVector(vector);
+	vectorInsert(vector, 10, 100);
+	vectorPrint(vector);
+	vectorDelete(vector, 10);
+	vectorPrint(vector);
+	vectorClear(vector);
 	printf("size: %d, capacity: %d \n", vector -> size, vector -> capacity);
 
 	free(vector -> arr);
@@ -67,8 +68,5 @@ void checkVector() {
 }
 
 int main() {
-	checkList();
-	checkVector();
-
 	return 0;
 }

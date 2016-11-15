@@ -3,7 +3,7 @@
 
 #include "linked-list.h"
 
-List* initializeList(Node* node) {
+List* listInitialize(ListNode* node) {
 	List* list = malloc(sizeof(List));
 
 	if (!node) {
@@ -19,11 +19,11 @@ List* initializeList(Node* node) {
 	return list;
 }
 
-void deconstructList(List* list) {
-	Node* current = list -> head;
+void listDeconstruct(List* list) {
+	ListNode* current = list -> head;
 
 	while (current != list -> tail) {
-		Node* next = current -> next;
+		ListNode* next = current -> next;
 
 		free(current);
 
@@ -34,8 +34,8 @@ void deconstructList(List* list) {
 	list = NULL;
 }
 
-Node* initializeNode(int data, Node* next) {
-	Node* node = malloc(sizeof(Node));
+ListNode* listNodeInitialize(int data, ListNode* next) {
+	ListNode* node = malloc(sizeof(ListNode));
 
 	node -> data = data;
 	node -> next = next ? next : NULL;
@@ -43,12 +43,12 @@ Node* initializeNode(int data, Node* next) {
 	return node;
 }
 
-void deconstuctNode(Node* node) {
+void listNodeDeconstruct(ListNode* node) {
 	free(node);
 }
 
-void printList(List* list) {
-	Node* current = list -> head;
+void listPrint(List* list) {
+	ListNode* current = list -> head;
 
 	while (current != NULL) {
 		printf("%d -> ", current -> data);
@@ -58,20 +58,20 @@ void printList(List* list) {
 	printf("\n");
 }
 
-void pushList(List* list, int data) {
-	Node* tail = list -> tail;
+void listPush(List* list, int data) {
+	ListNode* tail = list -> tail;
 
-	Node* newElem = initializeNode(data, NULL);
+	ListNode* newElem = listNodeInitialize(data, NULL);
 
 	tail -> next = newElem;
 	list -> tail = newElem;
 	list -> size++;
 }
 
-Node* popList(List* list) {
-	Node* tail = list -> tail;
+ListNode* listPop(List* list) {
+	ListNode* tail = list -> tail;
 
-	Node* current = list -> head;
+	ListNode* current = list -> head;
 	while (current -> next -> next != NULL) {
 		current = current -> next;
 	}
@@ -83,13 +83,13 @@ Node* popList(List* list) {
 	return tail;
 }
 
-Node* getElementList(List* list, int index) {
+ListNode* listGetElement(List* list, int index) {
 	if (index >= list -> size) {
 		printf("Element not found at index %d - outside of range\n", index);
 		return NULL;
 	}
 
-	Node* node = list -> head;
+	ListNode* node = list -> head;
 
 	int i = 0;
 	while (i < index) {
@@ -105,8 +105,8 @@ Node* getElementList(List* list, int index) {
 	return node;
 }
 
-void setElementList(List* list, int index, int newData) {
-	Node* atIndex = getElementList(list, index);
+void listSetElement(List* list, int index, int newData) {
+	ListNode* atIndex = listGetElement(list, index);
 
 	if (atIndex == NULL) {
 		printf("Not setting - aborting...\n");
@@ -116,18 +116,18 @@ void setElementList(List* list, int index, int newData) {
 	atIndex -> data = newData;
 }
 
-void insertList(List* list, int index, int newData) {
-	Node* atIndex = getElementList(list, index - 1);
+void listInsert(List* list, int index, int newData) {
+	ListNode* atIndex = listGetElement(list, index - 1);
 
-	Node* newNode = initializeNode(newData, atIndex -> next);
+	ListNode* newNode = listNodeInitialize(newData, atIndex -> next);
 	atIndex -> next = newNode;
 
 	list -> size++;
 }
 
-void deleteList(List* list, int index) {
-	Node* prevIndex = getElementList(list, index - 1);
-	Node* temp = prevIndex -> next;
+void listDelete(List* list, int index) {
+	ListNode* prevIndex = listGetElement(list, index - 1);
+	ListNode* temp = prevIndex -> next;
 
 	prevIndex -> next = prevIndex -> next -> next;
 
@@ -135,9 +135,9 @@ void deleteList(List* list, int index) {
 	list -> size--;
 }
 
-void clearList(List* list) {
-	Node* current = list -> head;
-	Node* tempHolder[list -> size];
+void listClear(List* list) {
+	ListNode* current = list -> head;
+	ListNode* tempHolder[list -> size];
 
 	int i = 0;
 	while (current != NULL) {
