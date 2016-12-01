@@ -56,3 +56,127 @@ void bstInsert(BST* bst, int data) {
 		}
 	}
 }
+
+void bstDelete(BST* bst, int data) {
+	BSTNode* toDelete = bstFind(bst, data);
+
+	if (toDelete == NULL) {
+		return;
+	}
+
+	BSTNode* parent = toDelete -> parent;
+
+	bool isRoot = bst -> root == toDelete;
+	bool hasRight = toDelete -> right != NULL;
+	bool hasLeft = toDelete -> left != NULL;
+
+	if (hasRight && hasLeft) {
+		BSTNode* temp = toRemove -> right;
+
+		while (temp -> left != NULL) {
+			temp = temp -> left;
+		}
+
+		toRemove -> data = temp -> data;
+		bstDelete(temp);
+	} else if (hasRight) {
+		BSTNode* rightChild = toDelete -> right;
+		toDelete -> data = rightChild -> data;
+		toDelete -> left = rightChild -> left;
+		toDelete -> right = rightChild -> right;
+
+		if (toDelete -> left != NULL) {
+			toDelete -> left -> parent = toDelete;
+		}
+
+		if (toDelete -> right != NULL) {
+			toDelete -> right -> parent = toDelete;
+		}
+
+		bstNodeDeconstruct(rightChild);
+	} else if (hasLeft) {
+		BSTNode* leftChild = toDelete -> left;
+		toDelete -> data = leftChild -> data;
+		toDelete -> left = leftChild -> left;
+		toDelete -> right = leftChild -> right;
+
+		if (toDelete -> left != NULL) {
+			toDelete -> left -> parent = toDelete;
+		}
+
+		if (toDelete -> right != NULL) {
+			toDelete -> right -> parent = toDelete;
+		}
+
+		bstNodeDeconstruct(leftChild);
+	} else {
+		if (isRoot) {
+			bst -> root = NULL;
+		} else {
+			if (toDelete == toDelete -> paren -> left) {
+				toDelete -> parent -> left = NULL;
+			} else {
+				toDelete -> parent -> right = NULL;
+			}
+		}
+	}
+
+	bstNodeDeconstruct(toDelete);
+}
+
+BSTNode* bstFind(BST* bst, int data) {
+	BSTNode* current = bst -> root;
+
+	while (current != NULL) {
+		if (data == current -> data) {
+			break;
+		} else if (data < current -> data) {
+			current = current -> left;
+		} else {
+			current = current -> right;
+		}
+	}
+
+	return current;
+}
+
+void bstPrintPreOrder(BST* bst) {
+	BSTNode* start = bst -> root;
+
+	if (root != NULL) {
+		printf("%d", start -> data);
+		printPreOrder(bst, start -> left);
+		printPreOrder(bst, start -> right);
+	}
+}
+
+void bstPrintInOrder(BST* bst) {
+	BSTNode* start = bst -> root;
+
+	if (root != NULL) {
+		printPreOrder(bst, start -> left);
+		printf("%d", start -> data);
+		printPreOrder(bst, start -> right);
+	}
+}
+
+void bstPrintPostOrder(BST* bst) {
+	BSTNode* start = bst -> root;
+
+	if (root != NULL) {
+		printPreOrder(bst, start -> left);
+		printPreOrder(bst, start -> right);
+		printf("%d", start -> data);
+	}
+}
+
+// TODO needs a queue
+void bstPrintLevelOrder(BST* bst) {}
+
+static void singleClockwiseRotation() {}
+
+static void singleCounterclockwiseRotation() {}
+
+static void doubleClockwiseRotation() {}
+
+static void doubleCounterclockwiseRotation() {}

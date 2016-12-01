@@ -22,4 +22,16 @@ void bstNodeDeconstruct(BSTNode*);
 
 void bstInsert(BST*, int);
 
+void bstDelete(BST*, int);
+
+BSTNode* bstFind(BST*, int);
+
+void bstPrintPreOrder(BST*);
+
+void bstPrintInOrder(BST*);
+
+void bstPrintPostOrder(BST*);
+
+void bstPrintLevelOrder(BST*);
+
 #endif

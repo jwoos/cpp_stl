@@ -67,6 +67,10 @@ void vectorCheck() {
 	free(vector);
 }
 
+void bstCheck() {
+	BST* bst = bstInitialize();
+}
+
 int main() {
 	return 0;
 }
