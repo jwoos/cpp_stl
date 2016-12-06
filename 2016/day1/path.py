@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# part 1
 def part1():
     f = open('input.txt')
     directions = [dir.strip().lower() for dir in f.read().split(', ')]
@@ -35,7 +34,6 @@ def part1():
     print(position)
     print(abs(position[0]) + abs(position[1]))
 
-# part 2
 def part2():
     f = open('input.txt')
     directions = [dir.strip().lower() for dir in f.read().split(', ')]
