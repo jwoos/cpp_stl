@@ -3,3 +3,5 @@
 *.o
 datastructures
 main
+*.pyc
+*.hi
