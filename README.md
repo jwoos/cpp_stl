@@ -1,2 +1,2 @@
-# DSA
-Data structures and Algorithms
+# etc
+Random stuff
