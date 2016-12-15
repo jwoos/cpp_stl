@@ -32,3 +32,5 @@ class Queue{
 
 		void resize(int);
 };
+
+#include "Queue.cpp"
