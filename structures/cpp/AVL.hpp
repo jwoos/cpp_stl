@@ -1,10 +1,7 @@
 template <class T>
 class AVLNode{
 	public:
-		AVLNode(const T& newdata = T(), AVLNode<T>* newparent = nullptr, AVLNode<T>* newleft = nullptr, AVLNode<T>* newright = nullptr) : data(newdata), parent(newparent), left(newleft), right(newright) {
-			calculateHeight();
-		}
-
+		AVLNode(const T&, AVLNode<T>*, AVLNode<T>*, AVLNode<T>*);
 		void calculateHeight();
 
 	private:
@@ -21,52 +18,30 @@ template <class T>
 class AVL{
 	public:
 		AVL();
-
 		virtual ~AVL();
-
 		void printPreOrder();
-
 		void printInOrder();
-
 		void printPostOrder();
-
 		void printLevelOrder();
-
 		void remove(const T&);
-
 		bool isEmpty() const;
-
 		void clear();
-
 		void insert(const T&);
-
 		AVLNode<T>* find(const T&);
 
 	private:
 		AVLNode<T>* root;
-
 		void printPreOrder(AVLNode<T>*);
-
 		void printInOrder(AVLNode<T>*);
-
 		void printPostOrder(AVLNode<T>*);
-
 		void printLevelOrder(AVLNode<T>*);
-
 		void remove(AVLNode<T>*);
-
 		AVLNode<T>* recursiveCopy(AVLNode<T>*);
-
 		int getHeight(AVLNode<T>*);
-
 		void doRotation(AVLNode<T>*);
-
 		void singleCCR(AVLNode<T>*);
-
 		void singleCR(AVLNode<T>*);
-
 		void doubleCCR(AVLNode<T>*);
-
 		void doubleCR(AVLNode<T>*);
 };
 

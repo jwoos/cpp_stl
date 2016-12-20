@@ -1,7 +1,9 @@
 #include <queue>
 
 template <typename T>
-AVLNode<T>::AVLNode() : data(newData), parent(newParent), left(newLeft), right(newRight) {}
+AVLNode::AVLNode(const T& newdata = T(), AVLNode<T>* newparent = nullptr, AVLNode<T>* newleft = nullptr, AVLNode<T>* newright = nullptr) : data(newdata), parent(newparent), left(newleft), right(newright) {
+	calculateHeight();
+}
 
 template <typename T>
 AVL<T>::AVL() : root(nullptr) {}
