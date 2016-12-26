@@ -71,14 +71,14 @@ void bstDelete(BST* bst, int data) {
 	bool hasLeft = toDelete -> left != NULL;
 
 	if (hasRight && hasLeft) {
-		BSTNode* temp = toRemove -> right;
+		BSTNode* temp = toDelete -> right;
 
 		while (temp -> left != NULL) {
 			temp = temp -> left;
 		}
 
-		toRemove -> data = temp -> data;
-		bstDelete(temp);
+		toDelete -> data = temp -> data;
+		bstDelete(bst, temp);
 	} else if (hasRight) {
 		BSTNode* rightChild = toDelete -> right;
 		toDelete -> data = rightChild -> data;
