@@ -1,15 +1,15 @@
-COMPILER = g++
-WARNING = -Wall
-STANDARD = -std=c++1y
-DEBUG = -g
-OPTIMIZATION = -O0
-DIRECTORY = -I.
+CPP_ARGS = -Wall -std=c++1y -ggdb -O0
+C_ARGS = -Wall -std=gnu11 -ggdb -O0
+
 BASE = $(basename $(FILE))
+DIRECTORY =
 FILE =
 LINK =
 
-default:
-	$(COMPILER) ${WARNING} ${STANDARD} ${DEBUG} ${DIRECTORY} ${FILE} ${LINK} -o ${BASE}.out
-	./${BASE}.out
+CPP:
+	$(CXX) $(CPP_ARGS) $(DIRECTORY)/$(FILE) $(LINK) -o $(BASE).out
+	./$(BASE).out
 
-# TODO: separate C and C++ targets
+C:
+	$(CC) $(C_ARGS) $(DIRECTORY)/$(FILE) $(LINK) -o $(BASE).out
+	./$(BASE).out
