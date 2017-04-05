@@ -4,3 +4,10 @@ node_modules/
 *.pyc
 *.o
 *.out
+
+*.ko
+*.order
+*.symvers
+*.mod
+*.mod.c
+*.cmd
