@@ -11,3 +11,6 @@ node_modules/
 *.mod
 *.mod.c
 *.cmd
+
+.bak
+.ipynb_checkpoints
