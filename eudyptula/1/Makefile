@@ -1,9 +1,9 @@
 obj-m += helloworld.o
 
-KERNEL_VERSION = $(shell uname -r)
+KERNEL_DIRECTORY = /lib/modules/$(shell uname -r)/build
 
 all:
-	make -C /lib/modules/$(KERNEL_VERSION)/build M=$(PWD) modules
+	make -C $(KERNEL_DIRECTORY) M=$(PWD) modules
 
 clean:
-	make -C /lib/modules/$(KERNEL_VERSION)/build M=$(PWD) clean
+	make -C $(KERNEL_DIRECTORY) M=$(PWD) clean
