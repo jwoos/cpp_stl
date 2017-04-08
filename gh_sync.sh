@@ -57,34 +57,46 @@ if [[ "$DEBUG" == true ]]; then
 	debug $REPO_FILE
 fi
 
-curl -s -H "Authorization: token ${TOKEN}" "${GITHUB_BASE}/user/repos?type=owner" > $REPO_FILE
+EXTRACTION_PATTERN="s/https:\/\/github.com\/${USERNAME}\/\([a-zA-Z0-9_-]\+\)\.git/\1/"
+STRIP_QUOTATIONS_PATTERN="s/\"//g"
 
-# Check if in an array and has message
-if [[ -z $(less $REPO_FILE | jq '.[] | .message' 2>/dev/null) ]]; then
-	echo -e "${RED}Error fetching repositories${END}"
-	echo 'Response: '
-	cat $REPO_FILE
-	exit 1
-fi
+PAGE=0
+URLS=()
 
-URLS=$(less $REPO_FILE | jq '.[] | .clone_url')
-if [[ "$DEBUG" == true ]]; then
-	debug $URLS
-fi
+while [ $(($PAGE * $GITHUB_PER_PAGE)) -lt $REPO_COUNT ]; do
+	curl -s -H "Authorization: token ${TOKEN}" "${GITHUB_BASE}/user/repos?type=owner&page=$((PAGE+1))" > $REPO_FILE
 
-PATTERN="s/https:\/\/github.com\/${USERNAME}\/\([a-zA-Z0-9_-]\+\)\.git/\1/"
-
-while read -r GH_URL; do
-	if [[ "$DEBUG" == true ]]; then
-		debug "Working on: ${GH_URL}"
+	# Check if in an array and has message
+	if [[ -z $(less $REPO_FILE | jq '.[] | .message' 2>/dev/null) ]]; then
+		echo -e "${RED}Error fetching repositories${END}"
+		echo 'Response: '
+		cat $REPO_FILE
+		exit 1
 	fi
 
-	DIRECTORY=$(echo $GH_URL | sed $PATTERN)
+	CHUNKED_URLS=$(less $REPO_FILE | jq '.[] | .clone_url')
+	if [[ "$DEBUG" == true ]]; then
+		debug $CHUNKED_URLS
+	fi
+
+
+	while read -r GH_URL; do
+		URLS+=("${GH_URL}")
+		if [[ "$DEBUG" == true ]]; then
+			debug "Working on: ${GH_URL}"
+		fi
+	done <<< "$CHUNKED_URLS"
+
+	((PAGE+=1))
+done
+
+for GH_URL in "${URLS[@]}"; do
+	DIRECTORY=$(echo $GH_URL | sed $EXTRACTION_PATTERN | sed $STRIP_QUOTATIONS_PATTERN)
 	if [[ "$DEBUG" == true ]]; then
 		debug "DIRECTORY: ${DIRECTORY}"
 	fi
 
-	continue
+	GH_URL="$(echo $GH_URL | sed $STRIP_QUOTATIONS_PATTERN)"
 
 	if [[ -d ${DIRECTORY} ]]; then
 		pushd ${DIRECTORY}
@@ -103,6 +115,6 @@ while read -r GH_URL; do
 
 		popd
 	else
-		git clone $1
+		git clone $GH_URL
 	fi
-done <<< "$URLS"
+done
