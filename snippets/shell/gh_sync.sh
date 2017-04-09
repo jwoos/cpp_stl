@@ -71,6 +71,7 @@ fi
 
 EXTRACTION_PATTERN="s/https:\/\/github.com\/${USERNAME}\/\([a-zA-Z0-9_-]\+\)\.git/\1/"
 STRIP_QUOTATIONS_PATTERN="s/\"//g"
+PID_EXTRACTION_PATTERN="s/Agent pid \([0-9]\+\)$/\1/"
 
 PAGE=0
 URLS=()
@@ -102,8 +103,12 @@ while [ $(($PAGE * $GITHUB_PER_PAGE)) -lt $REPO_COUNT ]; do
 	((PAGE+=1))
 done
 
+SSH_AGENT_PID=$(eval $(ssh-agent -s)) | sed $PID_EXTRACTION_PATTERN
+ssh-agent add ~/.ssh/id_rsa
+
 for GH_URL in "${URLS[@]}"; do
 	DIRECTORY=$(echo $GH_URL | sed $EXTRACTION_PATTERN | sed $STRIP_QUOTATIONS_PATTERN)
+	GH_SSH_URL="git@github.com:${USERNAME}/${DIRECTORY}.git"
 	if [[ "$DEBUG" == true ]]; then
 		debug "DIRECTORY: ${DIRECTORY}"
 	fi
@@ -127,7 +132,7 @@ for GH_URL in "${URLS[@]}"; do
 
 		popd
 	else
-		git clone $GH_URL
-		git remote set-url origin "git@github.com:${USERNAME}/${DIRECTORY}.git"
+		git clone $GH_SSH_URL
+		git remote set-url origin $GH_SSH_URL
 	fi
 done
