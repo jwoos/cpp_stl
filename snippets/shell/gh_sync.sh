@@ -25,6 +25,18 @@ if [[ $# -ne 2 ]]; then
 	exit 1
 fi
 
+DEPS=('jq' 'cat' 'less' 'curl' 'git' 'sed' 'bc')
+
+for DEP in "${DEPS[@]}"; do
+	type $DEP > /dev/null 2>&1
+
+	if [[ $? -ne 0 ]]; then
+		echo -e "${RED}MISSING DEPENDENCY: ${DEP}${END}"
+		echo -e "Please install ${DEP} and try again"
+		exit 1
+	fi
+done
+
 USERNAME=$1
 TOKEN=$2
 
@@ -116,5 +128,6 @@ for GH_URL in "${URLS[@]}"; do
 		popd
 	else
 		git clone $GH_URL
+		git remote set-url origin "git@github.com:${USERNAME}/${DIRECTORY}.git"
 	fi
 done
