@@ -5,6 +5,4 @@ Coding Challenges
 - Daily Programmer
 - Eudyptula
 - Foo Bar
-- Google Code Jam
-- Hacker Rank
 - Project Euler
