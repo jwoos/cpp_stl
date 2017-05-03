@@ -1,3 +1,5 @@
+import Data.List
+
 -- 1
 multSum :: (Integral a) => a -> a -> a -> a
 multSum x y limit = sum $ xMults ++ yMults
@@ -20,3 +22,22 @@ isPrimeNaive n
 
 primeFactors :: Integer -> [Integer]
 primeFactors n = [x | x <- [1, 3..(floor $ sqrt $ fromIntegral n)], isPrimeNaive x, n `mod` x == 0]
+
+-- 4
+isNumPalindrome :: Integer -> Bool
+isNumPalindrome n = str == reverse str
+  where str = show n
+
+compareLists :: ([Integer] -> Integer) -> [Integer] -> [Integer] -> Ordering
+compareLists fnc a b
+  | extractedA > extractedB = GT
+  | extractedA < extractedB = LT
+  | otherwise = EQ
+  where extractedA = fnc a
+        extractedB = fnc b
+
+findTwoFactors :: Integer -> Integer -> [Integer]
+findTwoFactors lower upper = maximumBy (compareLists last) palindromes
+  where factors = [[x, y, x * y] | x <- [lower..upper], y <- [lower..upper]]
+        palindromes = [lst | lst@(_:c) <- factors, isNumPalindrome $ last c]
+
