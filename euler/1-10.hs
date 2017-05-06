@@ -1,5 +1,3 @@
-module Main where
-
 import Utility
 import Data.List
 
@@ -51,4 +49,4 @@ leastCommonMultiple2 factors initial
   where x = head factors
         factors' = drop 1 factors
 
-main = print "hi"
+-- 6
