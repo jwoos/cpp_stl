@@ -1,3 +1,6 @@
+module Main where
+
+import Utility
 import Data.List
 
 -- 1
@@ -14,12 +17,6 @@ sumFibLim f lim (x, y) = sum $ takeWhile (<= lim) seq
         fibonacci = x : y : (zipWith (+) fibonacci (tail fibonacci))
 
 -- 3
-isPrimeNaive :: Integer -> Bool
-isPrimeNaive n
-  | length factors == 1 = True
-  | otherwise = False
-  where factors = [f | f <- [1, 3..(floor $ sqrt $ fromIntegral n)], n `mod` f == 0]
-
 primeFactors :: Integer -> [Integer]
 primeFactors n = [x | x <- [1, 3..(floor $ sqrt $ fromIntegral n)], isPrimeNaive x, n `mod` x == 0]
 
@@ -41,3 +38,17 @@ findTwoFactors lower upper = maximumBy (compareLists last) palindromes
   where factors = [[x, y, x * y] | x <- [lower..upper], y <- [lower..upper]]
         palindromes = [lst | lst@(_:c) <- factors, isNumPalindrome $ last c]
 
+-- 5
+leastCommonMultiple1 :: [Integer] -> Integer
+leastCommonMultiple1 factors = product primeFactorized
+  where primeFactors = filter isPrimeNaive factors
+        primeFactorized = map (`maxPower` (last factors)) primeFactors
+
+leastCommonMultiple2 :: [Integer] -> Integer -> Integer
+leastCommonMultiple2 factors initial
+  | length factors == 0 = initial
+  | otherwise = leastCommonMultiple2 factors' (lcm x initial)
+  where x = head factors
+        factors' = drop 1 factors
+
+main = print "hi"
