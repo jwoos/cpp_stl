@@ -55,3 +55,10 @@ sumSquareDifference lower upper = sumSquare - squareSum
   where range = [lower..upper]
         sumSquare = (sum range)^2
         squareSum = sum $ map (^2) range
+
+-- 7
+nPrimes :: (Integral a) => Int -> [a]
+nPrimes n = [2] ++ take (n - 1) [x | x <- [3,5..], isPrimeNaive x]
+
+nthPrime :: (Integral a) => Int -> a
+nthPrime n = last $ take (n + 1) [x | x <- [3,5..], isPrimeNaive x]
