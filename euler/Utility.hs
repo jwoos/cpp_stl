@@ -1,7 +1,8 @@
 module Utility (
     isPrimeNaive,
     maxExponent,
-    maxPower
+    maxPower,
+    readAsInteger
 ) where
 
 maxExponent :: Integer -> Integer -> Integer
@@ -17,3 +18,6 @@ isPrimeNaive n
   | length factors == 1 = True
   | otherwise = False
   where factors = [f | f <- [1..(floor $ sqrt $ fromIntegral n)], n `mod` f == 0]
+
+readAsInteger :: String -> Integer
+readAsInteger n = read n
