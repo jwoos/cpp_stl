@@ -1,0 +1,11 @@
+--- Makefile.original	2017-05-22 13:50:07.635881828 -0400
++++ Makefile	2017-05-22 13:50:20.966261958 -0400
+@@ -1,7 +1,7 @@
+ VERSION = 4
+ PATCHLEVEL = 12
+ SUBLEVEL = 0
+-EXTRAVERSION = -rc2
++EXTRAVERSION = -eudyptula
+ NAME = Fearless Coyote
+ 
+ # *DOCUMENTATION*
