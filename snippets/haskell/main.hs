@@ -1,5 +1,8 @@
 module Main (main) where
 
+import qualified Data.Map as Map
+import qualified Data.List as List
+
 lucky :: (Integral a) => a -> String
 lucky 7 = "Lucky number 7!"
 lucky x = "Sorry you're out of luck pal"
@@ -60,5 +63,26 @@ zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith' _ [] _ = []
 zipWith' _ _ [] = []
 zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
+
+findKey :: (Eq k) => k -> [(k,v)] -> Maybe v
+findKey key = foldr (\(k,v) acc -> if key == k then Just v else acc) Nothing
+
+data Point = Point Float Float deriving (Show)
+data Shape = Circle Point Float | Rectangle Point Point deriving (Show)
+
+surface :: Shape -> Float
+surface (Circle _ r) = pi * r^2
+surface (Rectangle (Point x1 y1) (Point x2 y2)) = (abs $ x2 - x1) * (abs $ y2 - y1)
+
+data Rank = Ace | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King deriving (Show, Eq, Enum, Ord, Read)
+data Suit = Diamonds | Clubs | Hearts | Spades deriving (Show, Eq, Enum, Ord, Read)
+
+data Person = Person {
+  firstName :: String,
+  lastName :: String,
+  age :: Int,
+  height :: Float,
+  phoneNumber :: String
+} deriving (Show)
 
 main = print $ aGuard 4 5
