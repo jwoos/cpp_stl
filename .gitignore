@@ -5,3 +5,5 @@
 *.swp
 .tmp/
 tmp/
+__pycache__/
+.ipynb_checkpoints/
