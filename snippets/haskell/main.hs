@@ -1,5 +1,7 @@
 module Main (main) where
 
+import Data.Char
+
 import qualified Data.Map as Map
 import qualified Data.List as List
 
@@ -85,4 +87,26 @@ data Person = Person {
   phoneNumber :: String
 } deriving (Show)
 
-main = print $ aGuard 4 5
+name = do
+  putStrLn "Hello, what's your name?"
+  name <- getLine
+  putStrLn ("Hey " ++ name)
+
+moreName = do
+  putStrLn "What's your first name?"
+  firstName <- getLine
+  putStrLn "What's your last name?"
+  lastName <- getLine
+  let bigFirstName = map toUpper firstName
+      bigLastName = map toUpper lastName
+  putStrLn $ "hey " ++ bigFirstName ++ " " ++ bigLastName ++ ", how are you?"
+
+readStuff = do
+  line <- getLine
+  if null line
+     then return ()
+     else do
+       putStrLn $ map toUpper line
+       readStuff
+
+main = readStuff
