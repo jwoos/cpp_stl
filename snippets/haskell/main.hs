@@ -1,7 +1,7 @@
 module Main (main) where
 
+import Control.Monad
 import Data.Char
-
 import qualified Data.Map as Map
 import qualified Data.List as List
 
@@ -109,4 +109,22 @@ readStuff = do
        putStrLn $ map toUpper line
        readStuff
 
-main = readStuff
+consumeChar = do
+  c <- getChar
+  if c /= ' '
+     then do
+       putChar c
+       consumeChar
+     else return ()
+
+consumeChar2 = do
+  c <- getChar
+  when (c /= ' ') $ do
+    putChar c
+    consumeChar2
+
+seqTest = do
+  rs <- sequence [getLine, getLine, getLine]
+  print rs
+
+main = seqTest
