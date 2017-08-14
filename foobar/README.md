@@ -1,7 +1,6 @@
 # Foobar
-[Google's Foobar challenge](http://www.google.com/foobar/)
 
-## Order of tasks
+## Order
 1. Level 1
     1. [Guard Game](https://github.com/jwoos/foobar/tree/master/guardgame)
 2. Level 2

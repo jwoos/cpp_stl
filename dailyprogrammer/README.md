@@ -1,4 +1,4 @@
-# [dailyprogrammer](https://www.reddit.com/r/dailyprogrammer)
+# Daily Programmer
 
 - E = easy
 - I = intermediate
