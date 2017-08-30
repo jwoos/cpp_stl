@@ -22,7 +22,7 @@ def part2():
         num += 1
         digest = hashlib.md5((secret_key + str(num)).encode()).hexdigest()
 
-    print('Part 1:', (digest, num))
+    print('Part 2:', (digest, num))
 
 if __name__ == '__main__':
     part1()
