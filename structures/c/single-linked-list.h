@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
+#ifndef SINGLE_LINKED_LIST_H
+#define SINGLE_LINKED_LIST_H
 
 /*
  * the SingleListNode is the actual list, I opted to wrap it in another struct
