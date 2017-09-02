@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 #include "bst.h"
-#include "linked-list.h"
+#include "single-linked-list.h"
 #include "vector.h"
 
 void listCheck() {
-	ListNode* head = listNodeInitialize(10, NULL);
-	List* list = listInitialize(head);
+	SingleListNode* head = listNodeInitialize(10, NULL);
+	SingleList* list = listInitialize(head);
 
 	for (int i = 2; i < 10; i++) {
 		listPush(list, i * 10);
@@ -15,7 +15,7 @@ void listCheck() {
 
 	listPrint(list);
 
-	ListNode* popped = listPop(list);
+	SingleListNode* popped = listPop(list);
 
 	listPrint(list);
 	printf("popped address: %p data: %d\n", (void*) popped, popped -> data);

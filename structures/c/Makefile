@@ -1,29 +1,16 @@
-WARNING = -Wall
-DEBUG = -g
-OPTIMIZE = -O0
+CC = gcc
+CFLAGS = -Wall -std=gnu11 -ggdb -O0
+LDLIBS =
 
-ALL = linked-list.o vector.o bst.o graph.o
+OBJECTS = single-linked-list.o vector.o bst.o graph.o
 
 default: clean datastructures
 
 debug: default
 	valgrind --leak-check=full -v ./datastructures
 
-datastructures: ${ALL}
-	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} $@.c $^ -o $@
+datastructures: datastructures.c ${OBJECTS}
 	./$@
 
-linked-list.o:
-	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c linked-list.c
-
-vector.o:
-	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c vector.c
-
-bst.o:
-	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c bst.c
-
-graph.o:
-	$(CC) ${WARNING} ${DEBUG} ${OPTIMIZE} -c graph.c
-
 clean:
-	rm ${ALL} datastructures
+	touch ${OBJECTS} datastructures && rm ${OBJECTS} datastructures
