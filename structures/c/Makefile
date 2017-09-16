@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -std=gnu11 -ggdb -O0
 LDLIBS =
 
-OBJECTS = double-linked-list.o single-linked-list.o vector.o bst.o graph.o
+OBJECTS = double-linked-list.o single-linked-list.o vector.o bst.o graph.o fixed-hash-map.o
 
 default: clean datastructures
 

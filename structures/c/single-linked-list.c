@@ -3,8 +3,11 @@
 
 #include "single-linked-list.h"
 
-SingleList* listInitialize(SingleListNode* node) {
-	SingleList* list = malloc(sizeof(SingleList));
+SingleList* listConstruct(SingleListNode* node) {
+	SingleList* list = malloc(sizeof SingleList);
+	if (!list) {
+		return NULL;
+	}
 
 	if (!node) {
 		list -> head = NULL;
@@ -35,7 +38,10 @@ void listDeconstruct(SingleList* list) {
 }
 
 SingleListNode* listNodeInitialize(int data, SingleListNode* next) {
-	SingleListNode* node = malloc(sizeof(SingleListNode));
+	SingleListNode* node = malloc(sizeof SingleListNode);
+	if (!node) {
+		return NULL;
+	}
 
 	node -> data = data;
 	node -> next = next ? next : NULL;

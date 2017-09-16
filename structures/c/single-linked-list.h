@@ -21,7 +21,7 @@ typedef struct SingleList {
 	int size;
 } SingleList;
 
-SingleList* listInitialize(SingleListNode*);
+SingleList* listConstruct(SingleListNode*);
 
 void listDeconstruct(SingleList*);
 

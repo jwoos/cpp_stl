@@ -3,7 +3,7 @@
 
 #include "bst.h"
 
-BST* bstInitialize(BSTNode* node) {
+BST* bstConstruct(BSTNode* node) {
 	BST* bst = malloc(sizeof(BST));
 
 	bst -> root = node ? node : NULL;

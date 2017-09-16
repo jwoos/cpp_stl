@@ -12,7 +12,7 @@ typedef struct BST {
 	BSTNode* root;
 } BST;
 
-BST* bstInitialize(BSTNode*);
+BST* bstConstruct(BSTNode*);
 
 void bstDeconstruct(BST*);
 

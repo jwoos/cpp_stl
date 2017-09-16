@@ -11,7 +11,7 @@ typedef struct Vector {
 	int* arr;
 } Vector;
 
-Vector* vectorInitialize();
+Vector* vectorConstruct();
 
 void vectorDeconstruct(Vector*);
 
