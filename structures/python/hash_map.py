@@ -1,20 +1,45 @@
+"""
+Hashmap that does closed addressing (chaining) to resolve hash collisions.
+
+Unlike most implementations of hashmaps, this will create the chains at
+initialization. This will allow it to still fit the requirements of fixed size,
+load factor of less than or equal to one, as well as to avoid the overhead
+of finding an appropriate hashing function that needs to touch on each node.
+"""
+
+
+class HashContainer:
+    def __init__(self, key, val):
+        self._key = key
+        self._val = val
+
+    @property
+    def key(self):
+        return self._key
+
+    @property
+    def val(self):
+        return self._val
+
+    @val.setter
+    def val(self, new_val):
+        self._val = new_val
+
+
 class HashMap:
     def __init__(self, size):
         """
-        Construct a hash map and initialize any internals
+        Construct a hash map and initialize any internals.
 
         @type size: int
         @param size: the size of the hashmap
         """
         self.max_size = size
         self.current_size = 0
-        self._list = [None] * max_size
+        self._store = [None] * max_size
 
     def _hash(self, key):
         return hash(key) % self.max_size
-
-    def _resolve_collision(self, key):
-        pass
 
     def set(self, key, val):
         """
