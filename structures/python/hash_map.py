@@ -1,29 +1,12 @@
 """
 Hashmap that does closed addressing (chaining) to resolve hash collisions.
-
-Unlike most implementations of hashmaps, this will create the chains at
-initialization. This will allow it to still fit the requirements of fixed size,
-load factor of less than or equal to one, as well as to avoid the overhead
-of finding an appropriate hashing function that needs to touch on each node.
 """
 
 
-class HashContainer:
-    def __init__(self, key, val):
-        self._key = key
-        self._val = val
-
-    @property
-    def key(self):
-        return self._key
-
-    @property
-    def val(self):
-        return self._val
-
-    @val.setter
-    def val(self, new_val):
-        self._val = new_val
+class HashMapNode:
+    def __init__(self, key, data):
+        self.key = key
+        self.data = data
 
 
 class HashMap:
@@ -56,6 +39,14 @@ class HashMap:
         @returns: True if successful, otherwise False
         """
         index = self._hash(key)
+        # found a list already
+        if self._store[index]:
+            pass
+        # first at the index
+        else:
+            chain = LinkedList()
+            self._store[index] = chain
+            chain.append(val)
 
     def get(self, key, val):
         """
@@ -68,6 +59,7 @@ class HashMap:
         @rtype: any
         @returns: the value stored at the key
         """
+        pass
 
     def delete(self, key):
         """
