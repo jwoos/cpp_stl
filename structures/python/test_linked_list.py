@@ -123,7 +123,48 @@ class TestLinkedListGet:
             self.linked_list.get(index)
 
 
-class TestInsert:
+class TestLinkedListGet:
+    def setup_method(self, method):
+        self.linked_list = ll.LinkedList()
+
+        for i in range(10):
+            self.linked_list.append(i)
+
+    def teardown_method(self, method):
+        del self.linked_list
+
+    def test_find_head(self):
+        index, node = self.linked_list.find(0)
+
+        assert index == 0
+        assert node == self.linked_list.head
+
+    def test_find_tail(self):
+        index, node = self.linked_list.find(self.linked_list.size - 1)
+
+        assert index == 9
+        assert node == self.linked_list.tail
+
+    def test_find_body(self):
+        index, node = self.linked_list.find(5)
+
+        assert index == 5
+        assert node == self.linked_list.get(5, node=True)
+
+    def test_find_not_found(self):
+        index, node = self.linked_list.find(100)
+
+        assert index == -1
+        assert node == None
+
+    def test_find_with_function(self):
+        index, node = self.linked_list.find(10, fn=lambda a, b: b - 10 == a)
+
+        assert index == 0
+        assert node == self.linked_list.head
+
+
+class TestLinkedListInsert:
     def setup_method(self, method):
         self.linked_list = ll.LinkedList()
 

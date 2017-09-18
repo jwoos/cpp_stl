@@ -56,6 +56,21 @@ class LinkedList:
 
         return current if node else current.data
 
+    def find(self, data, fn=None):
+        current = self.head
+
+        for index in range(self.size):
+            if not fn:
+                if current.data == data:
+                    return (index, current)
+            else:
+                if fn(current.data, data):
+                    return (index, current)
+
+            current = current.next
+
+        return (-1, None)
+
     def insert(self, index, data):
         # head
         if index == 0:
@@ -102,10 +117,13 @@ class LinkedList:
 
         self.size -= 1
 
-    def print(self):
+    def print(self, fn=None):
         current = self.head
         while current is not None:
-            print(current.data, end=' -> ')
+            if fn:
+                print(fn(current.data), end=' -> ')
+            else:
+                print(current.data, end=' -> ')
             current = current.next
         print()
 
