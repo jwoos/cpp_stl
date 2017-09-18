@@ -9,6 +9,10 @@ class LinkedList:
         self.tail = head
         self.size = 1 if head else 0
 
+    def _check_range(self, index):
+        if index < 0 or index > max(self.size - 1, 0):
+            raise Exception('Index out of range')
+
     def append(self, data):
         node = LinkedListNode(data=data)
 
@@ -22,13 +26,25 @@ class LinkedList:
         self.size += 1
 
     def pop(self, node=False):
-        previous = self.get(self.size - 1)
+        if self.size == 0:
+            return
 
-        previous.next = current.next
+        if self.size == 1:
+            current = self.head
+            self.head = None
+            self.tail = None
+        else:
+            previous = self.get(self.size - 2, node=True)
+            current = previous.next
+            self.tail = previous
+            previous.next = None
+
         self.size -= 1
         return current if node else current.data
 
     def get(self, index, node=False):
+        self._check_range(index)
+
         current = self.head
 
         while index > 0 and current.next is not None:
@@ -45,12 +61,16 @@ class LinkedList:
         if index == 0:
             next = self.head
             self.head = LinkedListNode(data=data)
-            self.head.next = next
+            self.tail = self.head
         #tail
-        elif index == self.size - 1:
+        elif index == self.size:
+            size = self.size
             self.append(data)
+            self.size = size
         # other
         else:
+            self._check_range(index)
+
             previous = self.get(index - 1, node=True)
             current = LinkedListNode(data=data)
             current.next = previous.next
@@ -67,9 +87,13 @@ class LinkedList:
             del current
         #tail
         elif index == self.size - 1:
+            size = self.size
             self.pop(index)
+            self.size = size
         # other
         else:
+            self._check_range(index)
+
             previous = self.get(index, node=True)
             current = previous.next
             previous.next = current.next
