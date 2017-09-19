@@ -1,7 +1,11 @@
 import re
 from unittest.mock import Mock, patch
 
-import pytest
+# for interactive runs
+try:
+    import pytest
+except:
+    pass
 
 import hash_map as hm
 
