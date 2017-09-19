@@ -129,10 +129,36 @@ class TestHashMapDelete:
 
     @patch('hash_map.hash')
     def test_delete_head(self, mocked_hash):
-        self.hash_map.print()
         mocked_hash.return_value = 0
         data = self.hash_map.delete('a')
 
         assert data == 0
-        assert self.hash_map._store[0].size == 0
+        assert self.hash_map._store[0].size == 2
         assert self.hash_map.size == 29
+
+    @patch('hash_map.hash')
+    def test_delete_not_found(self, mocked_hash):
+        mocked_hash.return_value = 15
+
+        data = self.hash_map.delete('z')
+        assert data == None
+        assert self.hash_map.size == 30
+
+    @patch('hash_map.hash')
+    def test_delete_tail(self, mocked_hash):
+        mocked_hash.return_value = 0
+        data = self.hash_map.delete('aaa')
+
+        assert data == 0
+        assert self.hash_map._store[0].size == 2
+        assert self.hash_map.size == 29
+
+    @patch('hash_map.hash')
+    def test_delete_all(self, mocked_hash):
+        for i in range(10):
+            mocked_hash.return_value = i
+            ch = chr(ord('a') + i)
+            self.hash_map.delete(ch)
+            self.hash_map.delete(ch * 2)
+            self.hash_map.delete(ch * 3)
+            assert self.hash_map.size == (30 - (i + 1) * 3)
