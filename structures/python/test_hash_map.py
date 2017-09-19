@@ -1,3 +1,4 @@
+import re
 from unittest.mock import Mock, patch
 
 import pytest
@@ -162,3 +163,34 @@ class TestHashMapDelete:
             self.hash_map.delete(ch * 2)
             self.hash_map.delete(ch * 3)
             assert self.hash_map.size == (30 - (i + 1) * 3)
+
+if __name__ == '__main__':
+    print('Interactive commandline for testing the hash map')
+    size = int(input('How big should the hash map be?\n'))
+    hash_map = hm.HashMap(size)
+    run = True
+
+    while run:
+        print('Select an option to do below')
+        command = input('(g)et, (s)et, (d)elete, (l)oad, (p)rint, (e)xit: ').strip().lower()
+
+        if re.match(r'g(?:et)?', command):
+            key = input('key: ').strip()
+            print('get result: ', hash_map.get(key))
+        elif re.match(r's(?:et)?', command):
+            key = input('key: ').strip()
+            value = input('value: ').strip()
+            print('set result: ', hash_map.set(key, value))
+        elif re.match(r'd(?:elete)?', command):
+            key = input('key: ').strip()
+            print('delete result: ', hash_map.delete(key))
+        elif re.match(r'l(?:load)?', command):
+            print('load result: ', hash_map.load())
+        elif re.match(r'p(?:rint)?', command):
+            print('print:')
+            hash_map.print()
+        elif re.match(r'e(?:xit)?', command):
+            print('exiting...')
+            run = False
+
+        print('--------------------------------------')
