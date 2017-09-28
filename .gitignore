@@ -1,12 +1,18 @@
 *$py.class
+*.cmd
 *.cover
 *.egg
 *.egg-info/
 *.hi
+*.ko
 *.log
 *.manifest
 *.mo
+*.mod
+*.mod.c
 *.o
+*.order
+*.out
 *.pot
 *.py[cod]
 *.pyc
@@ -15,7 +21,9 @@
 *.spec
 *.swo
 *.swp
+*.symvers
 .Python
+.bak
 .cache
 .coverage
 .coverage.*
@@ -45,6 +53,7 @@ htmlcov/
 lib/
 lib64/
 local_settings.py
+node_modules/
 nosetests.xml
 parts/
 pip-delete-this-directory.txt
