@@ -10,6 +10,7 @@ Coding Challenges
 - [Foo Bar](https://foobar.withgoogle.com/)
 - [Free Code Camp](https://www.freecodecamp.org/)
 - [HackerRank](https://www.hackerrank.com)
+- [InterviewBit](https://www.interviewbit.com)
 - [Kaggle](https://www.kaggle.com/)
 - [LeetCode](https://leetcode.com/)
 - [Project Euler](https://projecteuler.net/)
