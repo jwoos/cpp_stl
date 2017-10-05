@@ -38,5 +38,3 @@ def add_binary(a, b):
         solution.append(str(carry))
 
     return ''.join(reversed(solution))
-
-print(add_binary('11', '111'))
