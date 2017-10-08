@@ -8,22 +8,21 @@ def xor(a, b):
     diff = b - a
 
     if diff == 0:
+        return 0
+    elif diff == 0:
         return a
-    elif diff < 4:
-        return reduce(lambda c, d: c ^ d, range(a, b + 1))
-    else:
-        return xor(a, a // 4 * 4 + 4) ^ xor(b // 4 * 4, b)
+    elif diff < 5:
+        return reduce(lambda c, d: c ^ d, range(a, b))
 
+    return xor(a, a / 4 * 4 + 4) ^ xor(b / 4 * 4, b)
 
 def answer(start, length):
     line = [(
         start + (length - i) * length,
-        start + (length - i) * length + i - 1
+        start + (length - i) * length + i
     ) for i in range(length, 0, -1)]
 
-    row = [xor(a, b) for a, b in line]
-
-    return reduce(lambda a, b: a ^ b, row)
+    return reduce(lambda a, b: a ^ b, [xor(start, end) for start, end in line])
 
 print(answer(0, 3))
 print(answer(17, 4))
