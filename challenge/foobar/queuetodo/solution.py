@@ -1,21 +1,31 @@
+#!/usr/bin/env python2
 """
 n XOR 0 = n
 n XOR n = 0
-n XOR (n - d) = d if n and n - d are not powers of two
 """
 
+def xor(a, b):
+    diff = b - a
+
+    if diff == 0:
+        return a
+    elif diff < 4:
+        return reduce(lambda c, d: c ^ d, range(a, b + 1))
+    else:
+        return xor(a, a // 4 * 4 + 4) ^ xor(b // 4 * 4, b)
+
+
 def answer(start, length):
-    # this times out
-    solution = start
-    go = length
+    line = [(
+        start + (length - i) * length,
+        start + (length - i) * length + i - 1
+    ) for i in range(length, 0, -1)]
 
-    while go > 0:
-        for i in range(go):
-            solution ^= start + (length * i)
+    row = [xor(a, b) for a, b in line]
 
-        start += 1
-        go -= 1
+    return reduce(lambda a, b: a ^ b, row)
 
-    return solution
-
-print(answer(1000000, 100))
+print(answer(0, 3))
+print(answer(17, 4))
+print(answer(17, 250))
+print(answer(17, 2500))
