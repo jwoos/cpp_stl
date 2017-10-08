@@ -23,8 +23,3 @@ def answer(start, length):
     ) for i in range(length, 0, -1)]
 
     return reduce(lambda a, b: a ^ b, [xor(start, end) for start, end in line])
-
-print(answer(0, 3))
-print(answer(17, 4))
-print(answer(17, 250))
-print(answer(17, 2500))
