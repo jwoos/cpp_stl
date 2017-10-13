@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+
 """
 n XOR 0 = n
 n XOR n = 0

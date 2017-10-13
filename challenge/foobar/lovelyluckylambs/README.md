@@ -1,5 +1,4 @@
-Lovely Lucky LAMBs
-==================
+# Lovely Lucky LAMBs
 
 Being a henchman isn't all drudgery. Occasionally, when Commander Lambda is feeling generous, she'll hand out Lucky LAMBs (Lambda's All-purpose Money Bucks). Henchmen can use Lucky LAMBs to buy things like a second pair of socks, a pillow for their bunks, or even a third daily meal!
 

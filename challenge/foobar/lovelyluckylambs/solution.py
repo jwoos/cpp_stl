@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+
 def answer(total_lambs):
     if total_lambs < 10 or total_lambs > pow(10, 9):
         return 0

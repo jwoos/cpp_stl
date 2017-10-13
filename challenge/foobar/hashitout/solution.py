@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 def undo(digest, prev_msg):
     x = 0
 
@@ -29,6 +31,9 @@ def answer(digest):
     (int list) message = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]
     (int list) digest = [0, 129, 5, 141, 25, 137, 61, 149, 113, 145, 53, 157, 233, 185, 109, 165]
     '''
+    # NOT FINISHED
+    raise NotImplementedError()
+
     message = [
         undo(digest[0], 0)
     ]

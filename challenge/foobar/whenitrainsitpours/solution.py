@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 def answer(heights):
     heights_array = []
     water = 0
@@ -25,3 +27,5 @@ def answer(heights):
                 water += heights[before_index] - height
             else:
                 water += heights[next_index] - height
+
+    return water

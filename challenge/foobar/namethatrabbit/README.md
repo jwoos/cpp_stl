@@ -1,5 +1,4 @@
-Name that rabbit
-================
+# Name that rabbit
 
 "You forgot to give Professor Boolean's favorite rabbit specimen a name? You know how picky the professor is! Only particular names will do! Fix this immediately, before you're... eliminated!"
 
@@ -11,22 +10,3 @@ Write a function answer(names) which takes a list of names and returns the list 
 
 There will be at least 1 and no more than 1000 names. 
 Each name will consist only of lower case letters. The length of each name will be at least 1 and no more than 8.
-
-Languages
-=========
-
-To provide a Python solution, edit solution.py
-To provide a Java solution, edit solution.java
-
-Test cases
-==========
-
-Inputs:
-    (string list) names = ["annie", "bonnie", "liz"]
-Output:
-    (string list) ["bonnie", "liz", "annie"]
-
-Inputs:
-    (string list) names = ["abcdefg", "vi"]
-Output:
-    (string list) ["vi", "abcdefg"]

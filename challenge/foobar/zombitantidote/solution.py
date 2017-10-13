@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 def answer(meetings):
     sorted_meetings = sorted(meetings, key=lambda meeting: meeting[1])
     meeting_lists = []

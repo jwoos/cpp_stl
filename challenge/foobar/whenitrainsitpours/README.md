@@ -28,22 +28,3 @@ The amount of water that has accumulated is the number of Os, which, in this ins
 Write a function called answer(heights) which, given the heights of the stacked hutches from left-to-right as a list, computes the total area of standing water accumulated when water is poured from the top and allowed to run off the sides. 
 
 The heights array will have at least 1 element and at most 9000 elements. Each element will have a value of at least 1, and at most 100000.
-
-Languages
-=========
-
-To provide a Python solution, edit solution.py
-To provide a Java solution, edit solution.java
-
-Test cases
-==========
-
-Inputs:
-    (int list) heights = [1, 4, 2, 5, 1, 2, 3]
-Output:
-    (int) 5
-
-Inputs:
-    (int list) heights = [1, 2, 3, 2, 1]
-Output:
-    (int) 0
