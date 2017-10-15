@@ -1,64 +1,106 @@
 #!/usr/bin/env python2
 
-def sum_lists(a, b):
-    return [x + y for x, y in zip(coord, move)]
+from collections import deque
 
-def get_possible_moves(maze, coord, last_move=None):
+
+def sum_lists(a, b):
+    return [x + y for x, y in zip(a, b)]
+
+def get_possible_moves(maze, coord):
     max_row = len(maze) - 1
     max_col = len(maze[0]) - 1
 
-    row, col = coord
-
+    row, col, wb = coord
     moves = []
 
-    if row == 0 and last_move != (-1, 0):
+    if row < max_row:
         # no up
-        moves.append((1, 0))
-    elif row == max_row and last_move != (1, 0):
+        val = maze[row + 1][col]
+        if not val:
+            moves.append((row + 1, col, wb))
+        elif val and wb:
+            moves.append((row + 1, col, 0))
+
+    if row > 0:
         # no down
-        moves.append((-1, 0))
-    else:
-        if last_move != [-1, 0]:
-            moves.append((1, 0))
+        val = maze[row - 1][col]
+        if not val:
+            moves.append((row - 1, col, wb))
+        elif val and wb:
+            moves.append((row - 1, col, 0))
 
-        if last_move != (1, 0):
-            moves.append((-1, 0))
-
-    if col == 0 and last_move != (0, -1):
+    if col < max_col:
         # no left
-        moves.append((0, 1))
-    elif col == max_col and last_move != (0, 1):
-        # no right
-        moves.append((0, -1))
-    else:
-        if last_move != (0, -1):
-            moves.append((0, 1))
+        val = maze[row][col + 1]
+        if not val:
+            moves.append((row, col + 1, wb))
+        elif val and wb:
+            moves.append((row, col + 1, 0))
 
-        if last_move != (0, 1):
-            moves.append((0, -1))
+    if col > 0:
+        # no right
+        val = maze[row][col - 1]
+        if not val:
+            moves.append((row, col - 1, wb))
+        elif val and wb:
+            moves.append((row, col - 1, 0))
 
     return moves
 
-def dfs(maze, coord, last_move=None, removed=False):
-    moves = get_possible_moves(maze, coord)
-    current = maze[coord[0]][coord[1]]
-
-    if current == 0 and removed:
-        return None
-    elif not current:
-        removed = True
-
-    visited = 1
-
-    for move in moves:
-        r, c = move
-        inside_visited = dfs(maze, sum_lists(coord, move), last_move=move, removed=removed)
-
-        if inside_visited is not None:
-            visited += inside_visited
-
-    return visited
-
 def answer(maze):
-    coord = (0, 0)
-    return dfs(maze, (0, 0))
+    q = deque([(0, 0, 1)])
+    max_row = len(maze) - 1
+    max_col = len(maze[0]) - 1
+
+    matrix = [[0 for _ in range(len(maze[0]))] for _ in range(len(maze))]
+    matrix[0][0] = 1
+
+    while q:
+        x, y, wall_break = q.popleft()
+
+        if (x, y) == (max_row, max_col):
+            print(maze)
+            print(matrix)
+            return matrix[x][y]
+
+        for m in get_possible_moves(maze, (x, y, wall_break)):
+            m_x, m_y, wb = m
+
+            if not matrix[m_x][m_y]:
+                print(m_x, m_y, wb)
+                matrix[m_x][m_y] = matrix[x][y] + 1
+                q.append((m_x, m_y, wb))
+
+    return None
+
+# print(answer([[0, 1, 1, 0], [0, 0, 0, 1], [1, 1, 0, 0], [1, 1, 1, 0]]))
+# print(answer([[0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0]]))
+print(answer([
+    [0,1,1,1,1,1,1,1,0,1,1],
+    [0,1,1,0,0,0,1,1,0,0,0],
+    [0,0,0,0,1,0,1,1,0,1,1],
+    [1,1,1,1,1,0,1,1,0,1,1],
+    [0,0,0,0,1,0,1,0,0,0,0],
+    [0,1,1,0,1,0,1,0,1,1,0],
+    [0,1,1,0,0,0,1,0,1,1,0],
+    [0,1,1,1,1,1,1,0,1,1,0],
+    [0,0,0,0,0,0,1,0,1,1,0],
+    [1,1,1,1,1,0,1,0,1,1,0],
+    [1,1,1,1,1,0,0,0,1,1,0]
+]))
+
+[
+    [1, 2, 0, 0, 0, 0, 0, 0, 29, 0, 0],
+    [2, 3, 6, 7, 8, 9, 0, 0, 28, 29, 30],
+    [3, 4, 5, 6, 7, 8, 0, 0, 27, 0, 0],
+    [4, 5, 6, 7, 0, 9, 0, 0, 26, 0, 0],
+    [5, 6, 7, 8, 0, 10, 0, 24, 25, 26, 27],
+    [6, 0, 0, 9, 0, 11, 0, 23, 0, 0, 28],
+    [7, 0, 0, 10, 11, 12, 0, 22, 0, 0, 29],
+    [8, 0, 0, 0, 0, 0, 0, 21, 0, 0, 30],
+    [9, 10, 11, 12, 13, 14, 0, 20, 0, 0, 31],
+    [0, 0, 0, 0, 0, 15, 0, 19, 0, 0, 32],
+    [0, 0, 0, 0, 0, 16, 17, 18, 0, 0, 33]
+]
+
+# print(answer([[0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0]]))
