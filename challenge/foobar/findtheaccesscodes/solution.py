@@ -2,33 +2,15 @@
 
 def answer(l):
     length = len(l)
-    mems = {}
-    sorted_list = sorted(l)
     solution = 0
 
-    for i in range(length):
-        x = sorted_list[i]
-        if x not in mems:
-            mems[x] = set()
-
-        for j in range(i + 1, length):
-            y = sorted_list[j]
-
-            if i != j:
-                inner = mems[x]
-
-                if y in inner:
-                    continue
-                elif y % x == 0:
-                    inner.add(y)
-
-    for k, v in mems.items():
-        if not v:
-            continue
-
-        for x in v:
-            solution += len(mems[x])
+    while length >= 2:
+        length -= 1
+        left = len([x for x in l[:length] if l[length] % x == 0])
+        right = len([x for x in l[length + 1:] if x % l[length] == 0])
+        solution += left * right
 
     return solution
 
 print answer(list(range(1, 10000)))
+# print answer([1, 1])
