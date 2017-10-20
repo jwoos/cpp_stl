@@ -3,14 +3,17 @@ CFLAGS = -Wall -Wextra -std=gnu11 -ggdb -O0
 LDLIBS =
 LDFLAGS =
 
-UNUSED = graph.o tree/binary-search.o
-
 # implicit rule for %.o
 # $(CC) $(CPPFLAGS) $(CFLAGS) -c $@
-OBJECTS = utils.o \
-		  linked-list/double.o linked-list/single.o \
-		  vector.o \
-		  hash-map/closed.o hash-map/open.o
+
+UNUSED_ALGORITHMS =
+ALGORITHMS =
+
+UNUSED_STRUCTURES = graph.o tree/binary-search.o
+STRUCTURES = utils.o \
+			 linked-list/double.o linked-list/single.o \
+			 vector.o \
+			 hash-map/closed.o hash-map/open.o
 
 default: clean datastructures
 
