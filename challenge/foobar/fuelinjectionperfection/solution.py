@@ -1,25 +1,21 @@
 #!/usr/bin/env python2
 
-import math
-
-
 def answer(n):
     n = int(n)
     moves = 0
 
     while n > 1:
-        upper_logged = math.log(n + 1, 2)
-        print upper_logged
-        if n != 3 and upper_logged % 1 == 0:
-            n = 1
-            moves += upper_logged + 1
+        if n & 0b1 == 0:
+            n >>= 0b1
+        elif n != 3 and n & 0b11 == 0b11:
+            n += 1
         else:
-            if n % 2 == 0:
-                n /= 2
-                moves += 1
-            else:
-                n -= 1
-                moves += 1
+            n -= 1
+
+        moves += 1
+
+    if n == 0:
+        moves = 1
 
     return int(moves)
 
