@@ -17,6 +17,10 @@ Google's Foorbar challenge.
 2. Level 2
 	1. [Lovely Lucky Lambs](lovelyluckylambs)
 	2. [Numbers Station Coded Message](numbersstationcodedmessages)
+3. Level 3
+	1. [Prepare the Bunnies' Escape](preparethebunniesescape)
+	2. [Find the Access Codes](findtheaccesscodes)
+	3. [Fuel Injection Perfection](fuelinjectionperfection)
 
 ## Constraints
 ### Java

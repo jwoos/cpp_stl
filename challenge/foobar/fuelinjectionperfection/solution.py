@@ -1,39 +1,42 @@
 #!/usr/bin/env python2
 
-from decimal import Decimal
+from decimal import Decimal, getcontext
 import math
 
+def decimal_log(num, base):
+    return num.log10() / base.log10()
 
 def answer(n):
+    getcontext().prec = 350
     n = Decimal(n)
+    zero = Decimal('0')
+    one = Decimal('1')
     two = Decimal('2')
-    is_even = not n % two
-    bit_count = math.log(n, two)
+    three = Decimal('3')
+    round_to = Decimal('0.00001')
     moves = 0
 
-    if int(bit_count) != bit_count:
-        upper_bit_count = math.ceil(bit_count)
-        upper = math.pow(2, upper_bit_count)
-        upper_diff = abs(upper - int_n)
-
-        lower_bit_count = math.floor(bit_count)
-        lower = math.pow(2, lower_bit_count)
-        lower_diff = abs(lower - int_n)
-
-        if upper_diff < lower_diff:
-            # if upper_diff is lower, go up
-            bit_count = upper_bit_count
-            moves += upper_diff
+    while n > one:
+        upper_logged = decimal_log(n + one, two).quantize(round_to)
+        # move
+        if n != three and upper_logged.remainder_near(one) == zero:
+            n = one
+            moves += upper_logged.to_integral_exact() + 1
         else:
-            # if equal or greater, go down
-            bit_count = lower_bit_count
-            moves += lower_diff
-
-    moves += bit_count
+            if n.remainder_near(two) == zero:
+                n /= two
+                moves += 1
+            else:
+                n -= one
+                moves += 1
 
     return int(moves)
 
-print answer(15)
-print answer(4)
-print answer(3)
-print answer(1)
+print answer('100000000000000000000000000000000000000000000000000000000')
+print answer('65')
+print answer('32')
+print answer('18')
+print answer('15')
+print answer('4')
+print answer('3')
+print answer('1')
