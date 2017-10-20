@@ -1,7 +1,10 @@
 #ifndef DSA_UTILS_H
 #define DSA_UTILS_H
 
+
 #include <unistd.h>
+#include <stdint.h>
+
 
 void flush();
 
@@ -13,5 +16,10 @@ void writeStdout(char*, int);
 void writeStderr(char*, int);
 
 void freeArray(void**, int);
+
+uint64_t hashJDB2(unsigned char*);
+
+uint64_t hashSBDM(unsigned char*);
+
 
 #endif
