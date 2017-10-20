@@ -1,6 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+
 typedef struct AdjacencyListNode {
 	int index;
 	struct AdjacencyListNode* to;
@@ -35,5 +36,6 @@ void matrixDeconstruct(AdjacencyMatrix*);
 void listDeconstruct(AdjacencyList*);
 
 void graphDeconstruct(Graph*);
+
 
 #endif

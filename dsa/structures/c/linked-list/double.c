@@ -1,4 +1,4 @@
-#include "double-linked-list.h"
+#include "double.h"
 
 
 DoubleList* listConstruct(DoubleListNode* node) {

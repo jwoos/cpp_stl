@@ -1,6 +1,7 @@
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
 
+
 typedef struct BSTNode {
 	int data;
 	struct BSTNode* left;
@@ -33,5 +34,6 @@ void bstPrintInOrder(BST*);
 void bstPrintPostOrder(BST*);
 
 void bstPrintLevelOrder(BST*);
+
 
 #endif

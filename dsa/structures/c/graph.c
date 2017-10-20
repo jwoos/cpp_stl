@@ -3,6 +3,7 @@
 
 #include "graph.h"
 
+
 int** matrixInitialize(int size) {
 	if (!size) {
 		size = 5;

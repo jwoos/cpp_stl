@@ -1,9 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-/*
- * dynamic array
- */
 
 typedef struct Vector {
 	int size;
@@ -30,5 +27,6 @@ void vectorInsert(Vector*, int, int);
 void vectorDelete(Vector*, int);
 
 void vectorClear(Vector*);
+
 
 #endif

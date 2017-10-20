@@ -1,13 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "bst.h"
-#include "single-linked-list.h"
+#include "tree/binary-search.h"
+#include "linked-list/single.h"
 #include "vector.h"
 
+
 void listCheck() {
-	SingleListNode* head = listNodeInitialize(10, NULL);
-	SingleList* list = listInitialize(head);
+	SingleListNode* head = listNodeConstruct(10, NULL);
+	SingleList* list = listConstruct(head);
 
 	for (int i = 2; i < 10; i++) {
 		listPush(list, i * 10);
@@ -40,7 +41,7 @@ void listCheck() {
 }
 
 void vectorCheck() {
-	Vector* vector = vectorInitialize();
+	Vector* vector = vectorConstruct();
 	for (int i = 0; i < 100; i++) {
 		vectorPush(vector, i);
 
@@ -68,7 +69,7 @@ void vectorCheck() {
 }
 
 void bstCheck() {
-	BST* bst = bstInitialize();
+	/*BST* bst = bstConstruct();*/
 }
 
 int main() {

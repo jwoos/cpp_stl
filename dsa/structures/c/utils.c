@@ -1,5 +1,6 @@
 #include "utils.h"
 
+
 void flush() {
 	writeStdout("\n", 1);
 }

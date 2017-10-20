@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "bst.h"
+#include "binary-search.h"
+
 
 BST* bstConstruct(BSTNode* node) {
 	BST* bst = malloc(sizeof(BST));
