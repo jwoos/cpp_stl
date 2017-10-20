@@ -1,33 +1,24 @@
 #!/usr/bin/env python2
 
-from decimal import Decimal, getcontext
 import math
 
-def decimal_log(num, base):
-    return num.log10() / base.log10()
 
 def answer(n):
-    getcontext().prec = 350
-    n = Decimal(n)
-    zero = Decimal('0')
-    one = Decimal('1')
-    two = Decimal('2')
-    three = Decimal('3')
-    round_to = Decimal('0.00001')
+    n = int(n)
     moves = 0
 
-    while n > one:
-        upper_logged = decimal_log(n + one, two).quantize(round_to)
-        # move
-        if n != three and upper_logged.remainder_near(one) == zero:
-            n = one
-            moves += upper_logged.to_integral_exact() + 1
+    while n > 1:
+        upper_logged = math.log(n + 1, 2)
+        print upper_logged
+        if n != 3 and upper_logged % 1 == 0:
+            n = 1
+            moves += upper_logged + 1
         else:
-            if n.remainder_near(two) == zero:
-                n /= two
+            if n % 2 == 0:
+                n /= 2
                 moves += 1
             else:
-                n -= one
+                n -= 1
                 moves += 1
 
     return int(moves)
