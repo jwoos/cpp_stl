@@ -1,33 +1,35 @@
 #include "open.h"
 
 
-OpenHashMap* openHashMapConstruct(unsigned int s) {
-	OpenHashMap* hm = malloc(sizeof *hm);
+HashMap* hashMapConstruct(unsigned int s) {
+	HashMap* hm = malloc(sizeof *hm);
 	if (!hm) {
 		return NULL;
 	}
 
 	hm -> currentSize = 0;
 	hm -> maxSize = s;
-	/*hm -> store = listConstruct();*/
+
+	ListNode* head = malloc(sizeof *head);
+	hm -> store = listConstruct(head);
 
 	return hm;
 }
 
-void openHashMapDeconstruct(OpenHashMap* hm) {
+void hashMapDeconstruct(HashMap* hm) {
 	listDeconstruct(hm -> store);
 	free(hm);
 	hm = NULL;
 }
 
-OpenHashMapNode* openHashMapNodeConstruct(char* key, void* data) {
-	OpenHashMapNode* hmNode = malloc(sizeof *hmNode);
+HashMapNode* hashMapNodeConstruct(char* key, void* data) {
+	HashMapNode* hmNode = malloc(sizeof *hmNode);
 	hmNode -> key = key;
 	hmNode -> data = data;
 
 	return hmNode;
 }
 
-void openHashMapNodeDeconstruct(OpenHashMapNode* hmNode) {
+void hashMapNodeDeconstruct(HashMapNode* hmNode) {
 	free(hmNode);
 }

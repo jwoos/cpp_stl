@@ -2,29 +2,33 @@
 #define CLOSED_HASH_MAP_H
 
 
+/* Closed hashing hash map
+ */
+
+
 #include <stdint.h>
 
 #include "../utils.h"
 
 
-typedef struct ClosedHashMap {
+typedef struct HashMap {
 	unsigned int currentSize;
 	unsigned int maxSize;
-} ClosedHashMap;
+} HashMap;
 
-typedef struct ClosedHashMapNode {
+typedef struct HashMapNode {
 	char* key;
 	void* data;
-} ClosedHashMapNode;
+} HashMapNode;
 
 
-ClosedHashMap* closedHashMapConstruct(unsigned int);
+HashMap* hashMapConstruct(unsigned int);
 
-void closedHashMapDeconstruct(ClosedHashMap*);
+void hashMapDeconstruct(HashMap*);
 
-ClosedHashMapNode* closedHashMapNodeConstruct(char*, void*);
+HashMapNode* hashMapNodeConstruct(char*, void*);
 
-void closedHashMapNodeDeconstruct(ClosedHashMapNode*);
+void hashMapNodeDeconstruct(HashMapNode*);
 
 
 #endif

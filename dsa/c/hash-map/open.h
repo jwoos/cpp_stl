@@ -2,29 +2,34 @@
 #define OPEN_HASH_MAP_H
 
 
+/* Open hashing hash map
+ */
+
+
 #include <stdlib.h>
+
 #include "../linked-list/single.h"
 
 
-typedef struct OpenHashMap {
+typedef struct HashMap {
 	unsigned int currentSize;
 	unsigned int maxSize;
 	SingleList* store;
-} OpenHashMap;
+} HashMap;
 
-typedef struct OpenHashMapNode {
+typedef struct HashMapNode {
 	char* key;
 	void* data;
-} OpenHashMapNode;
+} HashMapNode;
 
 
-OpenHashMap* openHashMapConstruct(unsigned int);
+HashMap* hashMapConstruct(unsigned int);
 
-void openHashMapDeconstruct(OpenHashMap*);
+void hashMapDeconstruct(HashMap*);
 
-OpenHashMapNode* openHashMapNodeConstruct(char*, void*);
+HashMapNode* hashMapNodeConstruct(char*, void*);
 
-void openHashMapNodeDeconstruct(OpenHashMapNode*);
+void hashMapNodeDeconstruct(HashMapNode*);
 
 
 #endif
