@@ -1,3 +1,0 @@
-[submodule "challenge/eudyptula/linux"]
-	path = challenge/eudyptula/linux
-	url = git@github.com:torvalds/linux.git
